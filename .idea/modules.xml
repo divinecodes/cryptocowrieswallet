@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/CryptoWallet.iml" filepath="$PROJECT_DIR$/CryptoWallet.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Cryptowallet.iml" filepath="$PROJECT_DIR$/Cryptowallet.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
