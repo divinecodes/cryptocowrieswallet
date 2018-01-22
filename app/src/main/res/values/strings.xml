@@ -8,4 +8,13 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dashboardWelcome">Welcome To The Dashboard</string>
+    <string name="transactionWelcome">Welcome To Transactions Fragment</string>
+    <string name="mineWelcome">Welcome To Min Dashboard</string>
+    <string name="nav_help">Help</string>
+    <string name="nav_settings">Settings</string>
+    <string name="nav_account">Account</string>
+    <string name="nav_mine">Mine</string>
+    <string name="nav_transactions">Transactions</string>
+    <string name="nav_dashboard">Dashboard</string>
 </resources>

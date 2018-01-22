@@ -1,5 +1,6 @@
 package com.ultimustech.cryptowallet.views.activities;
 
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -14,9 +15,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.ultimustech.cryptowallet.R;
+import com.ultimustech.cryptowallet.views.fragments.AccountFragment;
+import com.ultimustech.cryptowallet.views.fragments.DashboardFragment;
+import com.ultimustech.cryptowallet.views.fragments.MineFragment;
+import com.ultimustech.cryptowallet.views.fragments.TransactionsFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private static final String TAG = "Main Activity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +48,11 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //setting up fragment manager
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.main_frame, new DashboardFragment()).commit(); // setting dashboard fragment as main view
+
     }
 
     @Override
@@ -81,18 +92,27 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        FragmentManager fragmentManager = getFragmentManager();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_dashboard) {
+            // Handle the dashboard action
+            fragmentManager.beginTransaction().replace(R.id.main_frame, new DashboardFragment()).commit();
+            setTitle(R.string.app_name);
+        } else if (id == R.id.nav_transactions) {
+            // Handle the dashboard action
+            fragmentManager.beginTransaction().replace(R.id.main_frame, new TransactionsFragment()).commit();
+            setTitle(R.string.nav_transactions);
+        } else if (id == R.id.nav_mine) {
+            // Handle the dashboard action
+            fragmentManager.beginTransaction().replace(R.id.main_frame, new MineFragment()).commit();
+            setTitle(R.string.nav_mine);
+        } else if (id == R.id.nav_account) {
+            // Handle the dashboard action
+            fragmentManager.beginTransaction().replace(R.id.main_frame, new AccountFragment()).commit();
+            setTitle(R.string.app_name);
+        } else if (id == R.id.nav_settings) {
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_help) {
 
         }
 
