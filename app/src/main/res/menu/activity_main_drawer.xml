@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="navigation_view">
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
 
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_dashboard"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_dashboard_black_24dp"
             android:title="@string/nav_dashboard" />
         <item
             android:id="@+id/nav_transactions"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_swap_horiz_black_24dp"
             android:title="@string/nav_transactions" />
         <item
             android:id="@+id/nav_mine"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/tools_cross_settings_symbol_for_interface"
             android:title="@string/nav_mine" />
         <item
             android:id="@+id/nav_account"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_account_balance_black_24dp"
             android:title="@string/nav_account"/>
     </group>
 
@@ -26,11 +26,11 @@
         <menu>
             <item
                 android:id="@+id/nav_settings"
-                android:icon="@drawable/ic_menu_share"
+                android:icon="@drawable/ic_settings_applications_black_24dp"
                 android:title="@string/nav_settings" />
             <item
                 android:id="@+id/nav_help"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/ic_info_black_24dp"
                 android:title="@string/nav_help" />
         </menu>
     </item>

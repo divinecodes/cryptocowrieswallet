@@ -17,4 +17,10 @@
     <string name="nav_mine">Mine</string>
     <string name="nav_transactions">Transactions</string>
     <string name="nav_dashboard">Dashboard</string>
+
+    <string name="title_activity_login">Login</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="action_share">Share</string>
+    <string name="action_logout">Logout</string>
 </resources>
