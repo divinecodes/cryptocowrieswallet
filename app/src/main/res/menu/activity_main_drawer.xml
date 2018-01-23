@@ -14,7 +14,7 @@
             android:title="@string/nav_transactions" />
         <item
             android:id="@+id/nav_mine"
-            android:icon="@drawable/tools_cross_settings_symbol_for_interface"
+            android:icon="@drawable/ic_mining_icon"
             android:title="@string/nav_mine" />
         <item
             android:id="@+id/nav_account"

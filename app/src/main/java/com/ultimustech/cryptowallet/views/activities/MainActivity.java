@@ -1,6 +1,7 @@
 package com.ultimustech.cryptowallet.views.activities;
 
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -83,7 +84,8 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.action_share) {
             return true;
         } else if (id == R.id.action_logout){
-
+            Intent i = new Intent(this,LoginActivity.class);
+            startActivity(i);
         }
 
 

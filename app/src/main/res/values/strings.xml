@@ -23,4 +23,12 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="action_share">Share</string>
     <string name="action_logout">Logout</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login_button">Login</string>
+    <string name="signup_link_text">No Account Yet? Create One</string>
+    <string name="login_label">Login</string>
+    <string name="signup_label">Sign Up</string>
+    <string name="login_link_text">Already Have an Account ?  Login</string>
+    <string name="confirmPassword">Confirm Password</string>
 </resources>
