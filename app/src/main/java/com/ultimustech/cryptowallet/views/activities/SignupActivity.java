@@ -3,25 +3,35 @@ package com.ultimustech.cryptowallet.views.activities;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.muddzdev.styleabletoastlibrary.StyleableToast;
 import com.ultimustech.cryptowallet.R;
 import com.ultimustech.cryptowallet.controllers.auth.AuthController;
+import com.ultimustech.cryptowallet.controllers.auth.InputValidation;
+
+
 
 public class SignupActivity extends AppCompatActivity {
     private static final String TAG = "SignUpActivity";
     private String message  = "";
+    private boolean valid;
 
     private FirebaseAuth mFirebaseAuth;
     private AuthController authController = new AuthController();
+    private InputValidation inputValidation = new InputValidation();
 
     private EditText emailText;
     private EditText passwordText;
@@ -68,33 +78,26 @@ public class SignupActivity extends AppCompatActivity {
                     progressDialog.setMessage(getResources().getString(R.string.creating_account));
                     progressDialog.show();
 
-                    if(authController.createAccount(emailText, passwordText, TAG)){
+                    if(signup(emailText, passwordText, TAG)){
                         //TODO: create user currency account
                         message = getResources().getString(R.string.signup_success);
                         progressDialog.dismiss(); //dismiss progress dialog
                         new StyleableToast
                                 .Builder(getBaseContext())
-                                .text(getResources().getString(R.string.signup_success))
+                                .text(message)
                                 .textColor(Color.WHITE)
                                 .backgroundColor(getResources().getColor(R.color.colorPrimaryDark))
                                 .length(Toast.LENGTH_LONG)
                                 .show();
-                        //login
-                        if(authController.login(emailText,passwordText,"LoginActivity")){
-                            //send verification email
-                            authController.sendEmailVerification();
-                            //start toast activity
-                            finish();
-                        } else {
-                            Intent i = new Intent(getBaseContext(), LoginActivity.class);
-                            startActivity(i);
-                        }
+                        Intent i = new Intent(getApplication(),LoginActivity.class);
+                        startActivity(i);
+                        finish();
                     } else {
                         message = getResources().getString(R.string.signup_failure);
                         progressDialog.dismiss();
                         new StyleableToast
                                 .Builder(getBaseContext())
-                                .text(getResources().getString(R.string.signup_success))
+                                .text(message)
                                 .textColor(Color.WHITE)
                                 .backgroundColor(getResources().getColor(R.color.colorPrimaryDark))
                                 .length(Toast.LENGTH_LONG)
@@ -107,6 +110,14 @@ public class SignupActivity extends AppCompatActivity {
 
     }
 
+    //getter and setter methods
+    public void setValid(boolean valid){
+        this.valid = valid;
+    }
+
+    public boolean getValid(){
+        return valid;
+    }
 
     /**
      * function to verify if password is the same
@@ -124,5 +135,38 @@ public class SignupActivity extends AppCompatActivity {
 
             return isConfirmed;
     }
+
+    /**
+     * function to signup user
+     * @param email,password,TAG
+     */
+    public boolean signup(EditText email, EditText password, final String TAG){
+
+            mFirebaseAuth = FirebaseAuth.getInstance(); //initialize firebase auth;
+            boolean valid;
+            //validate inputs
+            if(inputValidation.isValidated(email,password)){
+                String emailText = email.getText().toString();
+                String passwordText = password.getText().toString();
+                //firebase login authentication
+                mFirebaseAuth.createUserWithEmailAndPassword(emailText,passwordText)
+                        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if(task.isSuccessful()){
+                                    Log.d(TAG, "createUserWithEmail: successs");
+                                    setValid(true);
+                                } else {
+                                    Log.w(TAG, "createUserWithEmail: failure",task.getException());
+                                    setValid(false);
+                                }
+                            }
+                        });
+            }
+
+            return getValid();
+    }
+
+
 
 }

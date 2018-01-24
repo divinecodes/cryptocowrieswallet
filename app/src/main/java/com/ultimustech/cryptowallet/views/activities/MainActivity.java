@@ -45,6 +45,27 @@ public class MainActivity extends AppCompatActivity
         //initialize firebase auth
         mFirebaseAuth  = FirebaseAuth.getInstance();
 
+        //initialize Auth State Listener and check if user is logged in
+        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if(user == null){
+                    //user is signed out
+                    //start login activity
+                    Intent i = new Intent(getApplication(),LoginActivity.class);
+                    startActivity(i);
+                    Toast.makeText(getApplication(),"no user",Toast.LENGTH_LONG).show();
+                    finish();
+                } else {
+                    //user is signed in get/user id
+                    uid = user.getUid();
+                    Toast.makeText(getApplicationContext(), uid, Toast.LENGTH_LONG).show();
+                }
+
+            }
+        };
+
 
         FloatingActionButton fab =  findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -68,23 +89,21 @@ public class MainActivity extends AppCompatActivity
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.main_frame, new DashboardFragment()).commit(); // setting dashboard fragment as main view
 
-        //initialize Auth State Listener and check if user is logged in
-        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if(user != null){
-                    //user is signed in get/user id
-                    uid = user.getUid();
-                } else {
-                    //user is signed out
-                    //start login activity
-                    Intent i = new Intent(getBaseContext(),LoginActivity.class);
-                    startActivity(i);
-                }
-            }
-        };
+
     }
+
+    @Override
+    protected  void onPause(){
+        super.onPause();
+        mFirebaseAuth.removeAuthStateListener(mAuthStateListener);
+    }
+
+    @Override
+    protected  void onResume(){
+        super.onResume();
+        mFirebaseAuth.addAuthStateListener(mAuthStateListener);
+    }
+
 
     @Override
     public void onBackPressed() {
