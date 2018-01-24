@@ -31,4 +31,11 @@
     <string name="signup_label">Sign Up</string>
     <string name="login_link_text">Already Have an Account ?  Login</string>
     <string name="confirmPassword">Confirm Password</string>
+    <string name="signup_button">Create Account</string>
+    <string name="signup_success">Account Created Successfully</string>
+    <string name="creating_account">Creating Account…</string>
+    <string name="signup_failure">Unable to Create New Account</string>
+    <string name="login_success">Login Successful</string>
+    <string name="login_failure">Unable To Login</string>
 </resources>
+

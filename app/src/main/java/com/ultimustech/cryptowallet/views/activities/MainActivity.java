@@ -3,6 +3,7 @@ package com.ultimustech.cryptowallet.views.activities;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -14,7 +15,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.ultimustech.cryptowallet.R;
 import com.ultimustech.cryptowallet.views.fragments.AccountFragment;
 import com.ultimustech.cryptowallet.views.fragments.DashboardFragment;
@@ -24,6 +29,11 @@ import com.ultimustech.cryptowallet.views.fragments.TransactionsFragment;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private static final String TAG = "Main Activity";
+    private String uid = "";
+
+    //firebase AuthStateListener
+    private FirebaseAuth.AuthStateListener mAuthStateListener;
+    private FirebaseAuth mFirebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +41,10 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        //initialize firebase auth
+        mFirebaseAuth  = FirebaseAuth.getInstance();
+
 
         FloatingActionButton fab =  findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +68,22 @@ public class MainActivity extends AppCompatActivity
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.main_frame, new DashboardFragment()).commit(); // setting dashboard fragment as main view
 
+        //initialize Auth State Listener and check if user is logged in
+        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if(user != null){
+                    //user is signed in get/user id
+                    uid = user.getUid();
+                } else {
+                    //user is signed out
+                    //start login activity
+                    Intent i = new Intent(getBaseContext(),LoginActivity.class);
+                    startActivity(i);
+                }
+            }
+        };
     }
 
     @Override
@@ -84,7 +114,9 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.action_share) {
             return true;
         } else if (id == R.id.action_logout){
-            Intent i = new Intent(this,LoginActivity.class);
+            //signout user
+            mFirebaseAuth.signOut();
+            Intent i = new Intent(this, LoginActivity.class);
             startActivity(i);
         }
 

@@ -96,7 +96,7 @@
                 android:layout_weight="1"
                 android:background="@color/colorPrimaryDark"
                 android:textColor="@color/colorWhite"
-                android:text="@string/login_button" />
+                android:text="@string/signup_button" />
 
 
             <TextView
