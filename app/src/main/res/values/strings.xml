@@ -37,5 +37,36 @@
     <string name="signup_failure">Unable to Create New Account</string>
     <string name="login_success">Login Successful</string>
     <string name="login_failure">Unable To Login</string>
+    <string name="balance_label">account balance</string>
+    <string name="account_balance">0.00001208 CCW</string>
+    <string name="one_balance">1.00000000</string>
+    <string name="other_sample_rate">2.00000000</string>
+    <string name="ccw_shorthand">CCW</string>
+    <string name="sample_account_hash">7cfb127af5310dbde5100cc50db5ae304c5aa62d</string>
+    <string name="receive_transactions">receive</string>
+    <string name="send_transactions">send</string>
+    <string name="transaction_label">transactions</string>
+    <string name="transaction_type_label">transaction type:</string>
+    <string name="transaction_type">send</string>
+    <string name="transaction_account_label">to:</string>
+    <string name="transaction_amount_label">amount:</string>
+    <string name="transaction_date_label">DATE</string>
+    <string name="sample_date">12/12/2017</string>
+    <string name="exchange_rate">exchange rates</string>
+    <string name="buy_ccw">Buy CCW</string>
+
+    <string-array name="currencies">
+        <item>GHC</item>
+        <item>USD</item>
+        <item>BTC</item>
+        <item>ETH</item>
+        <item>XRP</item>
+    </string-array>
+    <string-array name="duration">
+        <item>Last Hour</item>
+        <item>This Week</item>
+        <item>This Month</item>
+        <item>This Year</item>
+    </string-array>
 </resources>
 
