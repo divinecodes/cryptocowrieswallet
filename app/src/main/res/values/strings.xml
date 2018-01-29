@@ -54,6 +54,12 @@
     <string name="sample_date">12/12/2017</string>
     <string name="exchange_rate">exchange rates</string>
     <string name="buy_ccw">Buy CCW</string>
+    <string name="scan_account_qr">scan qr code</string>
+    <string name="start_mining">mine</string>
+    <string name="stop_mining">stop</string>
+    <string name="free_mining">get free 0.05 CCW</string>
+    <string name="withdraw">withdraw</string>
+    <string name="free_mining_warning">free mining available once every hour</string>
 
     <string-array name="currencies">
         <item>GHC</item>
