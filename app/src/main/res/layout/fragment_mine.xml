@@ -106,6 +106,5 @@
                 android:textColor="@color/colorWhite"
                 android:textAllCaps="true"
                 android:id="@+id/withdraw"/>
-
     </LinearLayout>
 </FrameLayout>

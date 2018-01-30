@@ -60,6 +60,8 @@
     <string name="free_mining">get free 0.05 CCW</string>
     <string name="withdraw">withdraw</string>
     <string name="free_mining_warning">free mining available once every hour</string>
+    <string name="my_email">tetteydivine0@gmail.com</string>
+    <string name="change_details">Change Details</string>
 
     <string-array name="currencies">
         <item>GHC</item>

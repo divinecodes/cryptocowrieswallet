@@ -3,11 +3,54 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.ultimustech.cryptowallet.views.fragments.AccountFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="240dp"
+            android:layout_height="240dp"
+            android:id="@+id/account_qr"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
+            android:src="@drawable/bg"
+            android:scaleType="fitXY"
+            android:elevation="4dp"/>
+        <TextView
+            android:id="@+id/account_hash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="monospace"
+            android:gravity="center_horizontal"
+            android:text="@string/sample_account_hash"
+            android:textSize="12sp"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/account_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="center_horizontal"
+            android:text="@string/my_email"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/change_details"
+            android:padding="2dp"
+            android:layout_margin="10dp"
+            android:textStyle="bold"
+            android:elevation="4dp"
+            android:fontFamily="monospace"
+            android:textColor="@color/colorWhite"
+            android:textAllCaps="true"
+            android:id="@+id/button_change_details"/>
+    </LinearLayout>
 </FrameLayout>
