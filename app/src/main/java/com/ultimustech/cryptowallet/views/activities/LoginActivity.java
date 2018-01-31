@@ -67,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
                             .Builder(getBaseContext())
                             .text(message)
                             .textColor(Color.WHITE)
-                            .backgroundColor(getResources().getColor(R.color.colorPrimaryDark))
+                            .backgroundColor(Color.GREEN)
                             .length(Toast.LENGTH_LONG)
                             .show();
                     progressDialog.dismiss(); //dismiss progress dialog
@@ -81,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
                             .Builder(getBaseContext())
                             .text(message)
                             .textColor(Color.WHITE)
-                            .backgroundColor(getResources().getColor(R.color.colorPrimaryDark))
+                            .backgroundColor(Color.RED)
                             .length(Toast.LENGTH_LONG)
                             .show();
                 }

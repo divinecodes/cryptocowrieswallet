@@ -8,7 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.ultimustech.cryptowallet.R;
 
 /**
@@ -23,6 +25,7 @@ public class MineFragment extends Fragment {
     private Button btnStop;
     private Button btnFreeCCW;
     private Button btnWithdraw;
+    private ImageView mineAnimation;
 
     public MineFragment() {
         // Required empty public constructor
@@ -33,12 +36,14 @@ public class MineFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         //get view
-        View mineView = inflater.inflate(R.layout.fragment_mine,container, false);
+        final View mineView = inflater.inflate(R.layout.fragment_mine,container, false);
 
         //get widgets
         edtMineAccountHash = mineView.findViewById(R.id.mining_account_hash);
         btnMine = mineView.findViewById(R.id.start_mining);
         btnStop = mineView.findViewById(R.id.stop_mining);
+        scanQR = mineView.findViewById(R.id.scan_qr);
+        mineAnimation = mineView.findViewById(R.id.mining_anim);
         btnFreeCCW = mineView.findViewById(R.id.free_mining);
         btnWithdraw = mineView.findViewById(R.id.withdraw);
 
@@ -48,6 +53,7 @@ public class MineFragment extends Fragment {
         //disable buttons
         btnStop.setVisibility(View.GONE);
         btnWithdraw.setVisibility(View.GONE);
+        mineAnimation.setVisibility(View.GONE);
 
 
         //set onclick listener for  buttons
@@ -57,6 +63,8 @@ public class MineFragment extends Fragment {
                 btnMine.setVisibility(View.GONE);
                 btnStop.setVisibility(View.VISIBLE);
                 btnWithdraw.setVisibility(View.VISIBLE);
+                Glide.with(mineView.getContext()).load(R.drawable.mining).into(mineAnimation); //load animation
+                mineAnimation.setVisibility(View.VISIBLE);
             }
         });
         btnStop.setOnClickListener(new View.OnClickListener() {
@@ -65,6 +73,7 @@ public class MineFragment extends Fragment {
                 btnStop.setVisibility(View.GONE);
                 btnMine.setVisibility(View.VISIBLE);
                 btnFreeCCW.setVisibility(View.VISIBLE);
+                mineAnimation.setVisibility(View.GONE);
             }
         });
 

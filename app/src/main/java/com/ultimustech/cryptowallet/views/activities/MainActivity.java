@@ -50,18 +50,16 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
-//                if(user == null){
-//                    //user is signed out
-//                    //start login activity
-//                    Intent i = new Intent(getApplication(),LoginActivity.class);
-//                    startActivity(i);
-//                    Toast.makeText(getApplication(),"no user",Toast.LENGTH_LONG).show();
-//                    finish();
-//                } else {
-//                    //user is signed in get/user id
-//                    uid = user.getUid();
-//                    Toast.makeText(getApplicationContext(), uid, Toast.LENGTH_LONG).show();
-//                }
+                if(user == null){
+                    //user is signed out
+                    //start login activity
+                    Intent i = new Intent(getApplication(),LoginActivity.class);
+                    startActivity(i);
+                    finish();
+                } else {
+                    //user is signed in get/user id
+                    uid = user.getUid();
+                }
 
             }
         };
