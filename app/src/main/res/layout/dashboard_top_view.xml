@@ -7,7 +7,6 @@
     android:layout_height="240dp"
     android:id="@+id/dashboard_top_panel"
     android:background="@drawable/sample">
-
     <TextView
         android:id="@+id/balance_label"
         android:layout_width="wrap_content"
@@ -25,7 +24,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/account_balance"
         android:layout_width="wrap_content"
@@ -44,7 +42,6 @@
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/balance_label" />
-
     <TextView
         android:id="@+id/ccw_exchange_rate"
         android:layout_width="wrap_content"
@@ -61,7 +58,6 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/account_balance" />
-
     <TextView
         android:id="@+id/other_exchange_balance"
         android:layout_width="wrap_content"
@@ -79,7 +75,6 @@
         app:layout_constraintHorizontal_bias="0.129"
         app:layout_constraintStart_toEndOf="@+id/ccw_exchange_rate"
         app:layout_constraintTop_toBottomOf="@+id/account_balance" />
-
     <TextView
         android:id="@+id/ccw_shorthand"
         android:layout_width="wrap_content"
@@ -93,7 +88,6 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ccw_exchange_rate" />
-
     <Spinner
         android:id="@+id/other_currency_shorthand"
         android:layout_width="wrap_content"
@@ -109,7 +103,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/ccw_shorthand"
         app:layout_constraintTop_toBottomOf="@+id/other_exchange_balance" />
-
     <TextView
         android:id="@+id/account_hash"
         android:layout_width="wrap_content"
@@ -125,5 +118,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ccw_shorthand" />
-
 </android.support.constraint.ConstraintLayout>
