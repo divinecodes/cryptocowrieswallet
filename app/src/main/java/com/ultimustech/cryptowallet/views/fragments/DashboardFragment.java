@@ -1,6 +1,7 @@
 package com.ultimustech.cryptowallet.views.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.ultimustech.cryptowallet.R;
+import com.ultimustech.cryptowallet.views.activities.NewTransactionActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -42,7 +44,7 @@ public class DashboardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         //setup view
-        View dashboardView = inflater.inflate(R.layout.fragment_dashboard,container,false);
+        final View dashboardView = inflater.inflate(R.layout.fragment_dashboard,container,false);
         // find widgets
         txtAccountBalance = dashboardView.findViewById(R.id.account_balance);
         txtCCWExchangeRate = dashboardView.findViewById(R.id.ccw_exchange_rate);
@@ -69,6 +71,15 @@ public class DashboardFragment extends Fragment {
         spinnerOtherCurrencyShorthand.setAdapter(shorthandAdapter);
         spinnerExchangeDuration.setAdapter(durationAdapter);
 
+        //set onclick listeners
+        btnSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent  = new Intent(dashboardView.getContext(), NewTransactionActivity.class);
+                dashboardView.getContext().startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.push_top_in,R.anim.push_top_out);
+            }
+        });
 
         // Inflate the layout for this fragment
         return dashboardView;

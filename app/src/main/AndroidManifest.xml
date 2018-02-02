@@ -35,7 +35,10 @@
         <activity
             android:name=".views.activities.SignupActivity"
             android:label="@string/signup_label"
-            android:theme="@style/FullscreenTheme"/>
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".views.activities.NewTransactionActivity"
+            android:parentActivityName=".views.activities.MainActivity"/>
     </application>
 
 </manifest>

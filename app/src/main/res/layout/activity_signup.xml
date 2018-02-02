@@ -60,7 +60,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:textColorHint="@color/colorWhite">
+                android:textColorHint="@color/colorWhite"
+                app:passwordToggleEnabled="true">
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -70,14 +71,16 @@
                     android:textColorHint="@android:color/white"
                     android:textColorHighlight="@android:color/white"
                     android:shadowColor="@android:color/white"
-                    android:textColor="@android:color/white"/>
+                    android:textColor="@android:color/white"
+                    app:passwordToggleEnabled="true"/>
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:textColorHint="@color/colorWhite">
+                android:textColorHint="@color/colorWhite"
+                app:passwordToggleEnabled="true">
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

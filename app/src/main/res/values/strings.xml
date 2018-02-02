@@ -62,6 +62,15 @@
     <string name="free_mining_warning">free mining available once every hour</string>
     <string name="my_email">tetteydivine0@gmail.com</string>
     <string name="change_details">Change Details</string>
+    <string name="add_new_transaction">New Transaction</string>
+    <string name="sendAccount">Account Number</string>
+    <string name="sendAmount">Amount</string>
+    <string name="send">Send</string>
+    <string name="accountCode">Account Code</string>
+    <string name="transaction_in_progress">making transaction...</string>
+    <string name="wrong_password">Passwords Do Not Match!</string>
+    <string name="account_creation_error">Unable to Create Currency, Please go to Account Tab to Manualy Setup your account</string>
+    <string name="authenticate">authenticating...</string>
 
     <string-array name="currencies">
         <item>GHC</item>

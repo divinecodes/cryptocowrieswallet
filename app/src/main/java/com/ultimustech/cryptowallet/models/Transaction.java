@@ -6,6 +6,7 @@ import java.util.Date;
 
 /**
  * Created by Poacher on 1/31/2018.
+ * Firebase Model for Transaction
  */
 
 @IgnoreExtraProperties

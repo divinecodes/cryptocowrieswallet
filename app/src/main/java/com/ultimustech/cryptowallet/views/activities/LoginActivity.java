@@ -19,11 +19,13 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.muddzdev.styleabletoastlibrary.StyleableToast;
 import com.ultimustech.cryptowallet.R;
+import com.ultimustech.cryptowallet.controllers.auth.AuthController;
 import com.ultimustech.cryptowallet.controllers.auth.InputValidation;
 
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "Login Activity";
+    private static final int REQUEST_SIGNUP = 0;
     private String message ="";
     private boolean  valid;
 
@@ -53,37 +55,13 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // start progress bar
-                final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
-                        R.style.Theme_AppCompat_DayNight_Dialog);
-                progressDialog.setIndeterminate(true);
-                progressDialog.setMessage(getResources().getString(R.string.creating_account));
-                progressDialog.show();
 
-                if(login(emailText, passwordText,TAG)){
-                    message = getResources().getString(R.string.login_success);
-
-                    new StyleableToast
-                            .Builder(getBaseContext())
-                            .text(message)
-                            .textColor(Color.WHITE)
-                            .backgroundColor(Color.GREEN)
-                            .length(Toast.LENGTH_LONG)
-                            .show();
-                    progressDialog.dismiss(); //dismiss progress dialog
-                    Intent intent  = new Intent(getApplication(), MainActivity.class);
-                    startActivity(intent);
-                    finish();
+                if(inputValidation.isValidated(emailText, passwordText)){
+                    final String email = emailText.getText().toString();
+                    final String password = passwordText.getText().toString();
+                    login(email, password,TAG);
                 } else {
-                    message = getResources().getString(R.string.login_failure);
-                    progressDialog.dismiss(); //dismiss progress dialog
-                    new StyleableToast
-                            .Builder(getBaseContext())
-                            .text(message)
-                            .textColor(Color.WHITE)
-                            .backgroundColor(Color.RED)
-                            .length(Toast.LENGTH_LONG)
-                            .show();
+                    onLoginFailed();
                 }
             }
         });
@@ -98,41 +76,71 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-    //getter and setter methods
-    public void setValid(boolean valid){
-        this.valid = valid;
+
+    @Override
+    protected  void onActivityResult(int requestCode, int resultCode, Intent data){
+        if(requestCode == REQUEST_SIGNUP){
+            if(resultCode == RESULT_OK){
+                this.finish();
+            }
+        }
     }
 
-    public boolean getValid(){
-        return valid;
+    @Override
+    public void onBackPressed(){
+        //disable going back to the MainActivity
+        moveTaskToBack(true);
     }
 
     /**
      * function to login user
      * @param email,password,TAG
      */
-    public boolean login(EditText email, EditText password, final String TAG){
+    public void login(String email, String password, final String TAG){
         mFirebaseAuth = FirebaseAuth.getInstance(); //initialize firebase auth;
 
-        //validate inputs
-        if(inputValidation.isValidated(email,password)){
-            String emailText = email.getText().toString();
-            String passwordText = password.getText().toString();
-            mFirebaseAuth.signInWithEmailAndPassword(emailText,passwordText)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if(task.isSuccessful()){
-                                Log.d(TAG, "signInWithEmail: success");
-                                setValid(true);
-                            } else {
-                                Log.w(TAG,"signInWithEmail: failure",task.getException());
-                                setValid(false);
-                            }
-                        }
-                    });
-        }
+        //start progress bar
+        final ProgressDialog progressDialog = new ProgressDialog(this,
+                R.style.Theme_AppCompat_DayNight_Dialog);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage(getResources().getString(R.string.authenticate));
+        progressDialog.show();
 
-        return getValid();
+        mFirebaseAuth.signInWithEmailAndPassword(email,password)
+                .addOnCompleteListener( this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            Log.d(TAG, "signInWithEmail: success");
+                            progressDialog.dismiss();
+                            onLoginSuccess();
+                        } else {
+                            Log.w(TAG,"signInWithEmail: failure",task.getException());
+                            progressDialog.dismiss();
+                            onLoginFailed();
+                        }
+                    }
+                });
+    }
+
+    /**
+     * call this function when login is success full
+     */
+    public void onLoginSuccess(){
+        message = getResources().getString(R.string.login_success);
+        Toast.makeText(getApplicationContext(), message,Toast.LENGTH_LONG).show();
+        //redirect user to Main Activity
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
+        overridePendingTransition(R.anim.push_top_out,R.anim.push_top_in);
+        finish();
+    }
+
+    /**
+     * call this function on login failure
+     */
+    public void onLoginFailed(){
+        message = getResources().getString(R.string.login_failure);
+        Toast.makeText(getApplicationContext(), message,Toast.LENGTH_LONG).show();
     }
 }
