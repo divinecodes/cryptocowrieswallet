@@ -1,9 +1,7 @@
 package com.ultimustech.cryptowallet.views.activities;
 
-import android.accounts.Account;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,11 +19,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.muddzdev.styleabletoastlibrary.StyleableToast;
 import com.ultimustech.cryptowallet.R;
-import com.ultimustech.cryptowallet.controllers.auth.AuthController;
 import com.ultimustech.cryptowallet.controllers.auth.InputValidation;
-import com.ultimustech.cryptowallet.controllers.custom.AccountCodeHash;
+import com.ultimustech.cryptowallet.controllers.helpers.AccountCodeHash;
 import com.ultimustech.cryptowallet.controllers.database.FirebaseDBController;
 
 
@@ -138,28 +134,9 @@ public class SignupActivity extends AppCompatActivity {
                             Log.d(TAG, "createUserWithEmail: successs");
                             progressDialog.dismiss();
                             onSignupSuccess();
-                            //get user
-                            FirebaseUser  user = mFirebaseAuth.getCurrentUser();
-                            /**
-                             * if account created successfully, user  is automatically generated
-                             * get user details and start creating currency account
-                             * if user object not null create account code and upload to firebase
-                             */
-                            if(user != null){
-                                sendEmailVerification(user); //send email verification
-                                String userEmail = user.getEmail();
-                                String accountCode = accountCodeHash.makeHash(userEmail);
-                                String accountHash = getResources().getString(R.string.sample_account_hash);
-                                boolean uploaded = firebaseDBController.uploadAccountCode(accountCode,
-                                        accountHash,user.getUid());
-                                if(!uploaded){
-                                    message = getResources().getString(R.string.account_creation_error);
-                                    Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
-                                }
-                            } else {
-                                message = getResources().getString(R.string.account_creation_error);
-                                Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
-                            }
+                            FirebaseUser user = mFirebaseAuth.getCurrentUser();
+                            //send email verification
+                            sendEmailVerification(user);
                             finish();
                         } else {
                             progressDialog.dismiss();

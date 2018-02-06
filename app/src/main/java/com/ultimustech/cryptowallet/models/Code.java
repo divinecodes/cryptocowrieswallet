@@ -9,15 +9,17 @@ import com.google.firebase.database.IgnoreExtraProperties;
 
 @IgnoreExtraProperties
 public class Code {
-    public String accountHash,accountCode;
+    private String accountHash,accountCode,passphrase1,passphrase2;
 
     // Default constructor required for class to DataSnapshot.getValues(Code.class)
     public Code(){
 
     }
 
-    public Code(String accountHash,String  accountCode){
+    public Code(String accountHash,String  accountCode,String passphrase1, String passphrase2){
         this.accountHash = accountHash;
         this.accountCode = accountCode;
+        this.passphrase1 =  passphrase1;
+        this.passphrase2 = passphrase2;
     }
 }

@@ -19,13 +19,13 @@ public class FirebaseDBController {
      * @param   accountCode,accountHash
      * @return uploaded
      */
-    public boolean uploadAccountCode(String accountCode, String accountHash,String uid){
+    public boolean uploadAccountCode(String accountCode, String accountHash,String uid,String passphrase1, String passphrase2){
 
         mCodeReference = FirebaseDatabase.getInstance().getReference();
         //create new code json tree
         String key = mCodeReference.push().getKey();
 
-        Code code  = new Code(accountHash,accountCode);
+        Code code  = new Code(accountHash,accountCode,passphrase1, passphrase2);
 
         mCodeReference.child("AccountCodes").child(key).setValue(code);
 

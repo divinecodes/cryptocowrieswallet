@@ -1,7 +1,6 @@
-package com.ultimustech.cryptowallet.controllers.custom;
+package com.ultimustech.cryptowallet.controllers.helpers;
 
 import java.security.MessageDigest;
-import java.io.*;
 
 /**
  * Created by Poacher on 2/1/2018.

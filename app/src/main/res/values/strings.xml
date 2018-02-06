@@ -71,6 +71,16 @@
     <string name="wrong_password">Passwords Do Not Match!</string>
     <string name="account_creation_error">Unable to Create Currency, Please go to Account Tab to Manualy Setup your account</string>
     <string name="authenticate">authenticating...</string>
+    <string name="enterPassphrase">Enter Your Two Passphrases</string>
+    <string name="setup_account">Setup Account</string>
+    <string name="passphrase_1">fish</string>
+    <string name="passphrase_2">earth</string>
+    <string name="reveal_passphrase">Reveal Passphrases</string>
+    <string name="hide_passphrase">Hide Passphrases</string>
+    <string name="passphrase_label_1">Enter First Passphrase</string>
+    <string name="passphrase_info">This two passphrases would be used to authenticate transactions on the, keep them simple and easy to remember. *DO NOT STORE YOUR PASSPHRASES ANY WHERE*, anyone with your passphrase and account id,can perform transactions related to your account</string>
+    <string name="passphrase_label_2">Enter Second Passphrase</string>
+    <string name="setting_up_account">setting up crypto account</string>
 
     <string-array name="currencies">
         <item>GHC</item>
