@@ -54,29 +54,34 @@ public class AccountSetupActivity extends AppCompatActivity {
                 progressDialog.show();
 
                 FirebaseUser user = mFirebaseAuth.getCurrentUser();
-                            /**
-                             * if account created successfully, user  is automatically generated
-                             * get user details and start creating currency account
-                             * if user object not null create account code and upload to firebase
-                             * TODO: connect to crypto api and use that api to create the crypto account
-                             * TODO: USE MD5 HASH TO HASH THE PASSPHRASES
-                             */
-                        if(user != null){
-                            String userEmail = user.getEmail();
-                            String accountCode = accountCodeHash.makeHash(userEmail);
-                            String accountHash = getResources().getString(R.string.sample_account_hash);
-                            boolean uploaded = firebaseDBController.uploadAccountCode(accountCode,
-                                    accountHash,user.getUid(), firstPassphrase,secondPassphrase);
-                            if(!uploaded){
-                                message = getResources().getString(R.string.account_creation_error);
-                                Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
-                                }
-                            finish();
-                        } else {
-                                message = getResources().getString(R.string.account_creation_error);
-                                Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
-                                finish();
-                        }
+                /**
+                 * if account created successfully, user  is automatically generated
+                 * get user details and start creating currency account
+                 * if user object not null create account code and upload to firebase
+                 * TODO: connect to crypto api and use that api to create the crypto account
+                 * TODO: USE MD5 HASH TO HASH THE PASSPHRASES
+                 */
+                if(user != null){
+                    String userEmail = user.getEmail();
+                    String accountCode = accountCodeHash.makeHash(userEmail);
+                    String accountHash = getResources().getString(R.string.sample_account_hash);
+                    boolean uploaded = firebaseDBController.uploadAccountCode(accountCode,
+                            accountHash,user.getUid(), firstPassphrase,secondPassphrase);
+                    if(!uploaded){
+                        message = getResources().getString(R.string.account_creation_error);
+                        Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
+                    } else {
+                        message = getResources().getString(R.string.setup_account_success);
+                        Toast.makeText(getApplication(),message, Toast.LENGTH_LONG).show();
+                        finish();
+                    }
+                    progressDialog.dismiss();
+                } else {
+                    message = getResources().getString(R.string.account_creation_error);
+                    Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
+                    finish();
+                    progressDialog.dismiss();
+                }
             }
         });
     }

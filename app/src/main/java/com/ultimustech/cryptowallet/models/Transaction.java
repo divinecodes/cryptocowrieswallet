@@ -20,7 +20,7 @@ public class Transaction {
 
     }
 
-    public Transaction(String type, String account, float amount, Date transactionDate){
+    public Transaction(String type, String account,String transactionId, float amount, Date transactionDate){
         this.type = type;
         this.account = account;
         this.transactionId = transactionId;

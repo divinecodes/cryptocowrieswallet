@@ -1,5 +1,7 @@
 package com.ultimustech.cryptowallet.controllers.helpers;
 
+import android.os.Message;
+
 import java.security.MessageDigest;
 
 /**
@@ -37,4 +39,5 @@ public class AccountCodeHash {
 
         return accountCode;
     }
+
 }

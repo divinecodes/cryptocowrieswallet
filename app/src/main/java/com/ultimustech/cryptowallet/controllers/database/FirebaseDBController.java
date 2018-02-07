@@ -16,7 +16,7 @@ public class FirebaseDBController {
 
     /**
      * function to upload user account code
-     * @param   accountCode,accountHash
+     * @param   accountCode,accountHash,uid,passphrase1,passphrase2
      * @return uploaded
      */
     public boolean uploadAccountCode(String accountCode, String accountHash,String uid,String passphrase1, String passphrase2){
@@ -27,7 +27,7 @@ public class FirebaseDBController {
 
         Code code  = new Code(accountHash,accountCode,passphrase1, passphrase2);
 
-        mCodeReference.child("AccountCodes").child(key).setValue(code);
+        mCodeReference.child("AccountCodes").child(uid).setValue(code);
 
         return true;
     }

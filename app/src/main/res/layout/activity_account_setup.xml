@@ -3,8 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorPrimaryDark"
-    android:padding="2dp"
+    android:padding="5dp"
     android:layout_height="match_parent">
 
     <TextView
@@ -13,7 +12,6 @@
         android:layout_gravity="center_horizontal"
         android:text="@string/setup_account"
         android:fontFamily="sans-serif"
-        android:textColor="@color/colorWhite"
         android:textStyle="bold"
         android:gravity="center"
         android:textAllCaps="true"
@@ -23,10 +21,9 @@
         android:layout_height="wrap_content"
         android:text="@string/passphrase_info"
         android:layout_margin="5dp"
-        android:textColor="@color/colorWhite"
         android:textStyle="bold"
         android:textAllCaps="false"
-        android:drawableStart="@drawable/ic_info_white_24dp"
+        android:drawableStart="@drawable/ic_info_black_24dp"
         android:drawablePadding="5dp"
         android:textSize="12sp"/>
 
@@ -35,34 +32,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:textColorHint="@color/colorWhite">
+        android:layout_marginBottom="8dp">
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/input_passphrase1"
-            android:inputType="textPassword"
-            android:textColorHint="@android:color/white"
-            android:textColorHighlight="@android:color/white"
-            android:shadowColor="@android:color/white"
-            android:textColor="@android:color/white"
+            android:inputType="text"
             android:hint="@string/passphrase_label_1"/>
     </android.support.design.widget.TextInputLayout>
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:textColorHint="@color/colorWhite">
+        android:layout_marginBottom="8dp">
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/input_passphrase2"
-            android:inputType="textPassword"
-            android:textColorHint="@android:color/white"
-            android:textColorHighlight="@android:color/white"
-            android:shadowColor="@android:color/white"
-            android:textColor="@android:color/white"
+            android:inputType="text"
             android:hint="@string/passphrase_label_2"/>
     </android.support.design.widget.TextInputLayout>
     <Button

@@ -81,6 +81,7 @@
     <string name="passphrase_info">This two passphrases would be used to authenticate transactions on the, keep them simple and easy to remember. *DO NOT STORE YOUR PASSPHRASES ANY WHERE*, anyone with your passphrase and account id,can perform transactions related to your account</string>
     <string name="passphrase_label_2">Enter Second Passphrase</string>
     <string name="setting_up_account">setting up crypto account</string>
+    <string name="setup_account_success">Account Setup SuccessFul</string>
 
     <string-array name="currencies">
         <item>GHC</item>
