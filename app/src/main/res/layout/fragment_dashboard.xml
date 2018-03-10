@@ -10,91 +10,162 @@
         android:layout_height="match_parent"
         android:scrollbarStyle="insideOverlay">
         <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="5dp"
+            android:padding="10dp"
+            >
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/balances"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16sp"
+                android:textAllCaps="true"
+                android:textStyle="bold"
+                android:layout_marginBottom="3dp"
+                />
+            <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <android.support.constraint.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:elevation="3dp">
-                <include
-                    layout="@layout/dashboard_top_view"
-                    />
-
-                <Button
-                    android:id="@+id/button_receive"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="64dp"
-                    android:layout_marginTop="212dp"
-                    android:background="@color/colorPrimary"
-                    android:drawableEnd="@drawable/ic_transaction_received_white_24dp"
-                    android:drawablePadding="5dp"
-                    android:fontFamily="serif-monospace"
-                    android:padding="5dp"
-                    android:text="@string/buy_ccw"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <Button
-                    android:id="@+id/button_send"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="212dp"
-                    android:background="@color/colorPrimary"
-                    android:drawableEnd="@drawable/ic_transaction_send_white_24dp"
-                    android:drawablePadding="5dp"
-                    android:fontFamily="serif-monospace"
-                    android:padding="5dp"
-                    android:text="@string/send_transactions"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.467"
-                    app:layout_constraintStart_toEndOf="@+id/button_receive"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </android.support.constraint.ConstraintLayout>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="1dp"
-                android:layout_marginStart="1dp"
-                android:layout_marginBottom="10dp"
-                android:padding="3dp"
-                app:cardCornerRadius="2dp"
-                app:contentPadding="10dp"
-                app:cardElevation="2dp">
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginBottom="10dp"
+            android:padding="3dp"
+            app:cardCornerRadius="2dp"
+            app:contentPadding="10dp"
+            app:cardElevation="2dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-                    <TextView
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/transaction_label"
-                        android:textAllCaps="true"
-                        android:textSize="16sp"
+                        android:layout_height="270dp"
+                        android:orientation="vertical"
+                        android:layout_marginBottom="3dp"
                         android:layout_gravity="center_horizontal"
-                        android:gravity="center_horizontal"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textStyle="bold"
-                        android:fontFamily="sans-serif-condensed"
-                        />
-                    <include
-                        layout="@layout/app_divider_horizontal"/>
+                        android:gravity="center_horizontal">
+                        <com.github.mikephil.charting.charts.PieChart
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
+                            android:id="@+id/balancesChart"
+                            />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="70dp"
+                            android:background="@color/colorPrimaryDark"
+                            android:padding="5dp"
+                            android:orientation="vertical"
+                            android:gravity="center_horizontal">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="16sp"
+                                android:text="@string/accountBalanceLabel"
+                                android:textStyle="bold"
+                                android:id="@+id/accountLabel"
+                                android:textColor="@color/colorWhite"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="16sp"
+                                android:layout_marginStart="2dp"
+                                android:text="@string/account_balance"
+                                android:textStyle="normal"
+                                android:textColor="@color/colorWhite"/>
+                            <TextView
+                                android:id="@+id/account_hash"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="monospace"
+                                android:textColor="@color/colorWhite"
+                                android:gravity="center_horizontal"
+                                android:text="@string/sample_account_hash"
+                                android:textSize="12sp"
+                                android:textStyle="normal"/>
+                        </LinearLayout>
+                    </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="5dp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:layout_margin="3dp"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center_horizontal">
+                        <Button
+                            android:id="@+id/button_receive"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/colorPrimaryDark"
+                            android:drawableEnd="@drawable/ic_transaction_received_white_24dp"
+                            android:drawablePadding="5dp"
+                            android:fontFamily="serif-monospace"
+                            android:padding="5dp"
+                            android:text="@string/buy_ccw"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="16sp"
+                            android:textAllCaps="true"
+                            android:textStyle="bold"
+                            android:theme="@style/Widget.AppCompat.Button.Colored"
+                            android:elevation="3dp"/>
+                        <Button
+                            android:id="@+id/button_send"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginStart="8dp"
+                            android:background="@color/colorPrimaryDark"
+                            android:drawableEnd="@drawable/ic_transaction_send_white_24dp"
+                            android:drawablePadding="5dp"
+                            android:fontFamily="serif-monospace"
+                            android:padding="5dp"
+                            android:text="@string/send_transactions"
+                            android:textAllCaps="true"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:theme="@style/Widget.AppCompat.Button.Colored"
+                            android:elevation="3dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="1dp"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginBottom="10dp"
+                    android:padding="3dp"
+                    app:cardCornerRadius="2dp"
+                    app:contentPadding="10dp"
+                    app:cardElevation="2dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/transaction_label"
+                            android:textAllCaps="true"
+                            android:textSize="16sp"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center_horizontal"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textStyle="bold"
+                            android:fontFamily="sans-serif-condensed" />
+                        <include
+                            layout="@layout/app_divider_horizontal"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -104,8 +175,7 @@
                             android:textColor="@color/colorPrimaryText"
                             android:textStyle="normal"
                             android:fontFamily="sans-serif"
-                            android:layout_marginEnd="10dp"
-                            />
+                            android:layout_marginEnd="10dp" />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -115,147 +185,107 @@
                             android:textColor="@color/colorPrimaryDark"
                             android:textStyle="bold"
                             android:fontFamily="serif-monospace"
-                            android:id="@+id/transaction_type"
-                            />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="5dp"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:layout_width="wrap_content"
+                            android:id="@+id/transaction_type" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/transaction_account_label"
-                            android:textAllCaps="true"
-                            android:textSize="14sp"
-                            android:textColor="@color/colorPrimaryText"
-                            android:textStyle="normal"
-                            android:fontFamily="sans-serif"
-                            android:id="@+id/transaction_account"
-                            android:layout_marginEnd="10dp"
-                            />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/sample_account_hash"
-                            android:textAllCaps="true"
-                            android:textSize="12sp"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:textStyle="bold"
-                            android:fontFamily="serif-monospace"
-                            android:id="@+id/transaction_account_hash"
-                            />
-                    </LinearLayout>
+                            android:padding="5dp"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/transaction_account_label"
+                                android:textAllCaps="true"
+                                android:textSize="14sp"
+                                android:textColor="@color/colorPrimaryText"
+                                android:textStyle="normal"
+                                android:fontFamily="sans-serif"
+                                android:id="@+id/transaction_account"
+                                android:layout_marginEnd="10dp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/sample_account_hash"
+                                android:textAllCaps="true"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textStyle="bold"
+                                android:fontFamily="serif-monospace"
+                                android:id="@+id/transaction_account_hash" />
+                        </LinearLayout>
 
-                    <LinearLayout
+                        <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="5dp"
                         android:orientation="horizontal">
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/transaction_amount_label"
-                            android:textAllCaps="true"
-                            android:textSize="14sp"
-                            android:textColor="@color/colorPrimaryText"
-                            android:textStyle="normal"
-                            android:fontFamily="sans-serif"
-                            android:layout_marginEnd="10dp"
-                            />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/transaction_amount_label"
+                        android:textAllCaps="true"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textStyle="normal"
+                        android:fontFamily="sans-serif"
+                        android:layout_marginEnd="10dp"
+                        />
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/account_balance"
-                            android:textAllCaps="true"
-                            android:textSize="12sp"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:textStyle="bold"
-                            android:fontFamily="serif-monospace"
-                            android:id="@+id/transaction_amount"
-                            />
-                    </LinearLayout>
-                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/account_balance"
+                        android:textAllCaps="true"
+                        android:textSize="12sp"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textStyle="bold"
+                        android:fontFamily="serif-monospace"
+                        android:id="@+id/transaction_amount"
+                        />
+                        </LinearLayout>
+                        <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="5dp"
                         android:orientation="horizontal">
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/transaction_date_label"
-                            android:textAllCaps="true"
-                            android:textSize="14sp"
-                            android:textColor="@color/colorPrimaryText"
-                            android:textStyle="normal"
-                            android:fontFamily="sans-serif"
-                            android:layout_marginEnd="10dp"
-                            />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/transaction_date_label"
+                        android:textAllCaps="true"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textStyle="normal"
+                        android:fontFamily="sans-serif"
+                        android:layout_marginEnd="10dp"
+                        />
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/sample_date"
-                            android:textAllCaps="true"
-                            android:textSize="12sp"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:textStyle="bold"
-                            android:fontFamily="serif-monospace"
-                            android:id="@+id/transaction_date"
-                            />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sample_date"
+                        android:textAllCaps="true"
+                        android:textSize="12sp"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textStyle="bold"
+                        android:fontFamily="serif-monospace"
+                        android:id="@+id/transaction_date"/>
                     </LinearLayout>
                 </LinearLayout>
             </android.support.v7.widget.CardView>
-           <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginEnd="1dp"
-                android:layout_marginStart="1dp"
-                android:layout_marginBottom="10dp"
-                android:padding="3dp"
-                app:cardCornerRadius="2dp"
-                app:contentPadding="10dp"
-                app:cardElevation="2dp">
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="match_parent"
-                   android:orientation="vertical">
-                   <LinearLayout
-                       android:layout_width="match_parent"
-                       android:layout_height="match_parent"
-                       android:orientation="horizontal"
-                       android:layout_gravity="center_horizontal"
-                       android:gravity="center_horizontal">
-                       <TextView
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:text="@string/exchange_rate"
-                           android:textAllCaps="true"
-                           android:textSize="16sp"
-                           android:layout_gravity="center_horizontal"
-                           android:gravity="center_horizontal"
-                           android:textColor="@color/colorPrimaryDark"
-                           android:textStyle="bold"
-                           android:layout_marginEnd="20dp"
-                           android:fontFamily="sans-serif-condensed"
-                           />
-                       <Spinner
-                           android:id="@+id/exchange_rate_duration"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:fontFamily="sans-serif-condensed"
-                           android:textAllCaps="true"
-                           android:textColor="@color/colorPrimaryDark"
-                           android:textSize="12sp"
-                           android:textStyle="bold" />
-                   </LinearLayout>
-               </LinearLayout>
-           </android.support.v7.widget.CardView>
 
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/currency_prices"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16sp"
+                android:textAllCaps="true"
+                android:textStyle="bold"
+                android:layout_marginBottom="3dp"
+                />
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
                 android:layout_marginEnd="1dp"
                 android:layout_marginStart="1dp"
@@ -267,17 +297,13 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_gravity="center_horizontal"
-                        android:gravity="center_horizontal">
+                    android:orientation="vertical"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="CRYPTOCURRENCIES"
+                            android:text="bitcoin"
                             android:textAllCaps="true"
                             android:textSize="16sp"
                             android:layout_gravity="center_horizontal"
@@ -287,11 +313,140 @@
                             android:layout_marginEnd="20dp"
                             android:fontFamily="sans-serif-condensed"
                             />
-                        <android.support.v7.widget.RecyclerView
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="$40000"
+                            android:textAllCaps="true"
+                            android:textSize="16sp"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center_horizontal"
+                            android:textColor="@color/colorPrimary"
+                            android:textStyle="bold"
+                            android:layout_marginEnd="20dp"
+                            android:fontFamily="sans-serif-condensed"
+                            />
+                        <RelativeLayout
                             android:layout_width="match_parent"
+                            android:layout_height="150dp">
+                            <com.github.mikephil.charting.charts.LineChart
+                                android:layout_height="match_parent"
+                                android:layout_width="match_parent"
+                                android:id="@+id/bitcoinChart"
+                                />
+                        </RelativeLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="1dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginBottom="10dp"
+                android:padding="3dp"
+                app:cardCornerRadius="2dp"
+                app:contentPadding="10dp"
+                app:cardElevation="2dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Ethereum"
+                            android:textAllCaps="true"
+                            android:textSize="16sp"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center_horizontal"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textStyle="bold"
+                            android:layout_marginEnd="20dp"
+                            android:fontFamily="sans-serif-condensed"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="$40000"
+                            android:textAllCaps="true"
+                            android:textSize="16sp"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center_horizontal"
+                            android:textColor="@color/colorPrimary"
+                            android:textStyle="bold"
+                            android:layout_marginEnd="20dp"
+                            android:fontFamily="sans-serif-condensed"
+                            />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp">
+                        <com.github.mikephil.charting.charts.LineChart
                             android:layout_height="match_parent"
-                            android:id="@+id/coinbase_exchanges"/>
-                    </LinearLayout>
+                            android:layout_width="match_parent"
+                            android:id="@+id/etherChart"
+                            />
+                    </RelativeLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="1dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginBottom="10dp"
+                android:padding="3dp"
+                app:cardCornerRadius="2dp"
+                app:contentPadding="10dp"
+                app:cardElevation="2dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="LiteCoin"
+                            android:textAllCaps="true"
+                            android:textSize="16sp"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center_horizontal"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textStyle="bold"
+                            android:layout_marginEnd="20dp"
+                            android:fontFamily="sans-serif-condensed"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="$40000"
+                            android:textAllCaps="true"
+                            android:textSize="16sp"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center_horizontal"
+                            android:textColor="@color/colorPrimary"
+                            android:textStyle="bold"
+                            android:layout_marginEnd="20dp"
+                            android:fontFamily="sans-serif-condensed"
+                            />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp">
+                        <com.github.mikephil.charting.charts.LineChart
+                            android:layout_height="match_parent"
+                            android:layout_width="match_parent"
+                            android:id="@+id/litecoinChart"
+                            />
+                    </RelativeLayout>
                 </LinearLayout>
             </android.support.v7.widget.CardView>
         </LinearLayout>

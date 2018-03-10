@@ -60,8 +60,8 @@ public class TransactionsAdapter extends  RecyclerView.Adapter<TransactionsAdapt
             transactionType = itemView.findViewById(R.id.type);
             transactionTypeLabel = itemView.findViewById(R.id.transaction_account);
             transactionAccount = itemView.findViewById(R.id.transaction_account_hash);
-            transactionAmount = itemView.findViewById(R.id.transaction_amount);
-            transactionDate = itemView.findViewById(R.id.transaction_type);
+//            transactionAmount = itemView.findViewById(R.id.transaction_amount);
+//            transactionDate = itemView.findViewById(R.id.transaction_type);
             transactionLayout = itemView.findViewById(R.id.transactionLayout);
 
         }

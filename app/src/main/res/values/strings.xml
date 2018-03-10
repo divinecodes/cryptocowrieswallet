@@ -82,6 +82,10 @@
     <string name="passphrase_label_2">Enter Second Passphrase</string>
     <string name="setting_up_account">setting up crypto account</string>
     <string name="setup_account_success">Account Setup SuccessFul</string>
+    <string name="balances">Balances</string>
+    <string name="chartDescription">Overview Of Your Account Balances</string>
+    <string name="accountBalanceLabel">Account Balance</string>
+    <string name="currency_prices">CryptoCurrency Prices</string>
 
     <string-array name="currencies">
         <item>GHC</item>
