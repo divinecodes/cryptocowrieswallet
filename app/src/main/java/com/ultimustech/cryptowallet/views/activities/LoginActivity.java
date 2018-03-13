@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.muddzdev.styleabletoastlibrary.StyleableToast;
 import com.ultimustech.cryptowallet.R;
 import com.ultimustech.cryptowallet.controllers.auth.AuthController;

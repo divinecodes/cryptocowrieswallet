@@ -20,6 +20,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.ultimustech.cryptowallet.R;
+import com.ultimustech.cryptowallet.controllers.auth.AuthController;
 import com.ultimustech.cryptowallet.controllers.auth.InputValidation;
 import com.ultimustech.cryptowallet.controllers.helpers.AccountCodeHash;
 import com.ultimustech.cryptowallet.controllers.database.FirebaseDBController;
@@ -136,7 +137,7 @@ public class SignupActivity extends AppCompatActivity {
                             onSignupSuccess();
                             FirebaseUser user = mFirebaseAuth.getCurrentUser();
                             //send email verification
-                            sendEmailVerification(user);
+                            AuthController.sendEmailVerification(user);
                             finish();
                         } else {
                             progressDialog.dismiss();

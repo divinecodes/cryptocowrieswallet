@@ -2,28 +2,20 @@ package com.ultimustech.cryptowallet.views.fragments;
 
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.ultimustech.cryptowallet.R;
+import com.ultimustech.cryptowallet.controllers.helpers.MPChartsHelper;
 import com.ultimustech.cryptowallet.views.activities.NewTransactionActivity;
-
-import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -78,36 +70,28 @@ public class DashboardFragment extends Fragment {
         etherChart = dashboardView.findViewById(R.id.etherChart);
         litecoinChart = dashboardView.findViewById(R.id.litecoinChart);
 
+        MPChartsHelper.pieChartHelper(pieChart, dashboardView.getResources().getColor(R.color.colorPrimaryDark));
 
-        pieChart.setUsePercentValues(true);
-        pieChart.getDescription().setEnabled(true);
-        Description description  = new Description();
-        description.setText("Wallet Overview");
-        description.setTextSize(15);
-        description.setTextColor(dashboardView.getResources().getColor(R.color.colorPrimaryDark));
-        pieChart.setDescription(description);
-        pieChart.setExtraOffsets(5,10,5,5);
-        pieChart.setDragDecelerationFrictionCoef(0.95f);
-        pieChart.setDrawHoleEnabled(true);
-        pieChart.setHoleColor(Color.WHITE);
-        pieChart.setTransparentCircleRadius(61f);
+        //set data for bitcoin chart
+        Description bitcoinDesc  = new Description();
+        bitcoinDesc.setText("Bitcoin Price");
+        bitcoinDesc.setTextSize(15);
+        bitcoinDesc.setTextColor(dashboardView.getResources().getColor(R.color.colorPrimaryDark));
+        MPChartsHelper.lineChartHelper(bitcoinChart, "Bitcoin ", bitcoinDesc);
 
+        //set up data for  ethereum
+        Description etherDesc = new Description();
+        etherDesc.setText("Ether Price");
+        etherDesc.setTextSize(15);
+        etherDesc.setTextColor(dashboardView.getResources().getColor(R.color.colorAccent));
+        MPChartsHelper.lineChartHelper(etherChart, "Ethereum", etherDesc);
 
-        ArrayList<PieEntry> yValues = new ArrayList<>();
-        yValues.add(new PieEntry(30f, "Spent"));
-        yValues.add(new PieEntry(40f,"Received"));
-        yValues.add(new PieEntry(30f, "Balance"));
+        //set up data for litecoin
+        Description liteDesc = new Description();
+        liteDesc.setText("Litecoin Price ");
+        liteDesc.setTextColor(dashboardView.getResources().getColor(R.color.colorPrimary));
+        MPChartsHelper.lineChartHelper(litecoinChart, "LiteCoing ", liteDesc);
 
-        PieDataSet dataSet = new PieDataSet(yValues, "Balances");
-        dataSet.setSliceSpace(8f);
-        dataSet.setSelectionShift(5f);
-        dataSet.setColors(ColorTemplate.MATERIAL_COLORS);
-
-        PieData pieData = new PieData((dataSet));
-        pieData.setValueTextSize(10f);
-        pieData.setValueTextColor(dashboardView.getResources().getColor(R.color.colorPrimary));
-
-        pieChart.setData(pieData);
         // Inflate the layout for this fragment
         return dashboardView;
     }

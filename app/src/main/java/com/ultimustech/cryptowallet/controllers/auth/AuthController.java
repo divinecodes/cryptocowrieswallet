@@ -26,8 +26,7 @@ public class AuthController {
      *
      */
 
-    public void sendEmailVerification(){
-        final FirebaseUser user = mFirebaseAuth.getCurrentUser();
+    public static void sendEmailVerification(FirebaseUser user){
         user.sendEmailVerification();
     }
 
