@@ -2,13 +2,16 @@ package com.ultimustech.cryptowallet.views.fragments;
 
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
@@ -16,6 +19,15 @@ import com.github.mikephil.charting.components.Description;
 import com.ultimustech.cryptowallet.R;
 import com.ultimustech.cryptowallet.controllers.helpers.MPChartsHelper;
 import com.ultimustech.cryptowallet.views.activities.NewTransactionActivity;
+
+import java.io.IOException;
+
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+import okio.BufferedSink;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -91,6 +103,27 @@ public class DashboardFragment extends Fragment {
         liteDesc.setText("Litecoin Price ");
         liteDesc.setTextColor(dashboardView.getResources().getColor(R.color.colorPrimary));
         MPChartsHelper.lineChartHelper(litecoinChart, "LiteCoing ", liteDesc);
+
+        //call api
+//        List<HistoricalData> historicalDataList = ApiRequests.callCoinAPI("1MIN","2016-01-01T00:00:00");
+//        if(historicalDataList != null){
+//            for(int i = 0; i < historicalDataList.size(); i++){
+//                Toast.makeText(dashboardView.getContext(), historicalDataList.get(i).toString(), Toast.LENGTH_LONG).show();
+//            }
+//        }
+        OkHttpClient client = new OkHttpClient();
+        RequestBody body = new RequestBody() {
+            @Override
+            public MediaType contentType() {
+                return null;
+            }
+
+            @Override
+            public void writeTo(BufferedSink sink) throws IOException {
+
+            }
+        };
+
 
         // Inflate the layout for this fragment
         return dashboardView;
