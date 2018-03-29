@@ -86,6 +86,7 @@
     <string name="chartDescription">Overview Of Your Account Balances</string>
     <string name="accountBalanceLabel">Account Balance</string>
     <string name="currency_prices">CryptoCurrency Prices</string>
+    <string name="nav_exchanges">Exchange</string>
 
     <string-array name="currencies">
         <item>GHC</item>

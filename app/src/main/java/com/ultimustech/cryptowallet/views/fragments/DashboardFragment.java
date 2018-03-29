@@ -64,7 +64,7 @@ public class DashboardFragment extends Fragment {
         final View dashboardView = inflater.inflate(R.layout.fragment_dashboard,container,false);
 
         txtPrimaryAccountHash = dashboardView.findViewById(R.id.account_hash);
-        btnReceive = dashboardView.findViewById(R.id.button_receive);
+
         btnSend = dashboardView.findViewById(R.id.button_send);
 
         //set onclick listeners
@@ -102,27 +102,7 @@ public class DashboardFragment extends Fragment {
         Description liteDesc = new Description();
         liteDesc.setText("Litecoin Price ");
         liteDesc.setTextColor(dashboardView.getResources().getColor(R.color.colorPrimary));
-        MPChartsHelper.lineChartHelper(litecoinChart, "LiteCoing ", liteDesc);
-
-        //call api
-//        List<HistoricalData> historicalDataList = ApiRequests.callCoinAPI("1MIN","2016-01-01T00:00:00");
-//        if(historicalDataList != null){
-//            for(int i = 0; i < historicalDataList.size(); i++){
-//                Toast.makeText(dashboardView.getContext(), historicalDataList.get(i).toString(), Toast.LENGTH_LONG).show();
-//            }
-//        }
-        OkHttpClient client = new OkHttpClient();
-        RequestBody body = new RequestBody() {
-            @Override
-            public MediaType contentType() {
-                return null;
-            }
-
-            @Override
-            public void writeTo(BufferedSink sink) throws IOException {
-
-            }
-        };
+        MPChartsHelper.lineChartHelper(litecoinChart, "LiteCoin ", liteDesc);
 
 
         // Inflate the layout for this fragment

@@ -102,23 +102,6 @@
                         android:layout_margin="3dp"
                         android:gravity="center_horizontal"
                         android:orientation="vertical">
-                        <Button
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@color/colorPrimaryDark"
-                            android:layout_gravity="center_horizontal"
-                            android:text="@string/buy_ccw"
-                            android:drawableEnd="@drawable/ic_transaction_received_white_24dp"
-                            android:drawablePadding="5dp"
-                            android:padding="2dp"
-                            android:layout_margin="5dp"
-                            android:textStyle="bold"
-                            android:elevation="4dp"
-                            android:textSize="16sp"
-                            android:fontFamily="serif-monospace"
-                            android:textColor="@color/colorWhite"
-                            android:textAllCaps="true"
-                            android:id="@+id/button_receive"/>
 
                         <Button
                             android:layout_width="match_parent"
