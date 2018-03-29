@@ -13,14 +13,14 @@ import java.util.Date;
 public class Transaction {
     public String type, account, transactionId;
     public float  amount;
-    public Date transactionDate;
+    public long transactionDate;
 
     //Default constructor required for class to DataSnapshot.getValues(Transaction.class)
     public Transaction(){
 
     }
 
-    public Transaction(String type, String account,String transactionId, float amount, Date transactionDate){
+    public Transaction(String type, String account,String transactionId, float amount, long transactionDate){
         this.type = type;
         this.account = account;
         this.transactionId = transactionId;

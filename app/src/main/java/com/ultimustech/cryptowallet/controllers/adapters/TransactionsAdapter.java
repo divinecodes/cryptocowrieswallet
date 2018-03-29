@@ -12,6 +12,7 @@ import com.ultimustech.cryptowallet.R;
 import com.ultimustech.cryptowallet.models.Transaction;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,9 +20,8 @@ import java.util.List;
  */
 
 public class TransactionsAdapter extends  RecyclerView.Adapter<TransactionsAdapter.ViewHolder> {
-    private List<Transaction> transactions;
+    private ArrayList<Transaction> transactions;
     private Context context;
-
     public TransactionsAdapter(Context context, ArrayList<Transaction>transactions){
         this.transactions = transactions;
         this.context = context;
@@ -36,6 +36,12 @@ public class TransactionsAdapter extends  RecyclerView.Adapter<TransactionsAdapt
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position){
         //data would be replaced with data from firebase
+        Transaction transaction = transactions.get(position);
+
+        holder.transactionType.setText(transaction.type);
+        holder.transactionAccount.setText(transaction.account);
+        holder.transactionAmount.setText(String.format("%s CCW",transaction.amount));
+        holder.transactionDate.setText(new Date(transaction.transactionDate).toString());
     }
 
 
@@ -57,11 +63,11 @@ public class TransactionsAdapter extends  RecyclerView.Adapter<TransactionsAdapt
             super(itemView);
 
             //casting views to various ids
-            transactionType = itemView.findViewById(R.id.type);
             transactionTypeLabel = itemView.findViewById(R.id.transaction_account);
             transactionAccount = itemView.findViewById(R.id.transaction_account_hash);
-//            transactionAmount = itemView.findViewById(R.id.transaction_amount);
-//            transactionDate = itemView.findViewById(R.id.transaction_type);
+            transactionAmount = itemView.findViewById(R.id.transaction_amount);
+            transactionType = itemView.findViewById(R.id.transaction_type);
+            transactionDate = itemView.findViewById(R.id.transaction_date);
             transactionLayout = itemView.findViewById(R.id.transactionLayout);
 
         }

@@ -41,7 +41,8 @@
             android:parentActivityName=".views.activities.MainActivity" />
         <activity
             android:name=".views.activities.AccountSetupActivity"
-            android:parentActivityName=".views.activities.MainActivity"/>
+            android:parentActivityName=".views.activities.MainActivity" />
+        <activity android:name=".views.activities.BuyCoinsActivity"></activity>
     </application>
 
 </manifest>
