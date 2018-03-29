@@ -87,6 +87,8 @@
     <string name="accountBalanceLabel">Account Balance</string>
     <string name="currency_prices">CryptoCurrency Prices</string>
     <string name="nav_exchanges">Exchange</string>
+    <string name="sample_coins">100CCW</string>
+    <string name="coins_for_sale">Coins For Sale:</string>
 
     <string-array name="currencies">
         <item>GHC</item>
@@ -100,6 +102,18 @@
         <item>This Week</item>
         <item>This Month</item>
         <item>This Year</item>
+    </string-array>
+    <string-array name="sampleHash">
+        <item>1cfb127af5310dbde5100cc50db5ae389c5aa62d</item>
+        <item>2cfb127af5310dbde5100cc50db5ae304c5sd62d</item>
+        <item>3cfb127af5310dbde5100cc50db5ae389c5aa62d</item>
+        <item>4cfb127af5310dbde5100cc50db5ae304c5sd62d</item>
+        <item>5cfb127af5310dbde5100cc50db5ae389c5aa62d</item>
+        <item>6cfb127af5310dbde5100cc50db5ae304c5sd62d</item>
+        <item>7cfb127af5310dbde5100cc50db5ae389c5aa62d</item>
+        <item>8cfb127af5310dbde5100cc50db5ae304c5sd62d</item>
+        <item>9cfb127af5310dbde5100cc50db5ae389c5aa62d</item>
+        <item>0cfb127af5310dbde5100cc50db5ae304c5sd62d</item>
     </string-array>
 </resources>
 

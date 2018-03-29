@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_mine) {
             // Handle the dashboard action
             fragmentManager.beginTransaction().replace(R.id.main_frame, new ExchangeFragment()).commit();
-            setTitle(R.string.nav_mine);
+            setTitle(R.string.nav_exchanges);
         } else if (id == R.id.nav_account) {
             // Handle the dashboard action
             fragmentManager.beginTransaction().replace(R.id.main_frame, new AccountFragment()).commit();
