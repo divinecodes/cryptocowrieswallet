@@ -89,6 +89,15 @@
     <string name="nav_exchanges">Exchange</string>
     <string name="sample_coins">100CCW</string>
     <string name="coins_for_sale">Coins For Sale:</string>
+    <string name="enterAmount">Enter Amount</string>
+    <string name="buy">Buy</string>
+    <string name="buyCoinsTitle">Buy Coins</string>
+    <string name="enterMomoNumber">Enter Mobile Money Number</string>
+    <string name="enterCreditCardPin">Enter Credit Card Pin</string>
+    <string name="enterCreditCardNumber">Enter Credit Card Number</string>
+    <string name="enterLoyaltyCode">Enter Loyalty Code</string>
+    <string name="charge">Amount To Be Paid:</string>
+    <string name="ghanacedis">100GHS</string>
 
     <string-array name="currencies">
         <item>GHC</item>
@@ -114,6 +123,11 @@
         <item>8cfb127af5310dbde5100cc50db5ae304c5sd62d</item>
         <item>9cfb127af5310dbde5100cc50db5ae389c5aa62d</item>
         <item>0cfb127af5310dbde5100cc50db5ae304c5sd62d</item>
+    </string-array>
+    <string-array name="paymentTypes">
+        <item>Mobile Money</item>
+        <item>Credit Card</item>
+        <item>Loyalty Code</item>
     </string-array>
 </resources>
 
