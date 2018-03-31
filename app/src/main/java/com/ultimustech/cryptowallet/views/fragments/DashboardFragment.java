@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +19,7 @@ import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
 import com.ultimustech.cryptowallet.R;
 import com.ultimustech.cryptowallet.controllers.helpers.MPChartsHelper;
+import com.ultimustech.cryptowallet.views.activities.AccountSetupActivity;
 import com.ultimustech.cryptowallet.views.activities.NewTransactionActivity;
 
 import java.io.IOException;
@@ -45,6 +47,8 @@ public class DashboardFragment extends Fragment {
     private TextView txtTransactionAccount;
     private TextView txtTransactionAmount;
     private TextView txtTransactionDate;
+    private LinearLayout dashboardLayout;
+    private Button initSetupAccount;
 
     private PieChart pieChart;
     private LineChart bitcoinChart;
@@ -64,9 +68,22 @@ public class DashboardFragment extends Fragment {
         final View dashboardView = inflater.inflate(R.layout.fragment_dashboard,container,false);
 
         txtPrimaryAccountHash = dashboardView.findViewById(R.id.account_hash);
-
         btnSend = dashboardView.findViewById(R.id.button_send);
+        initSetupAccount = dashboardView.findViewById(R.id.button_init_setup_account);
+        dashboardLayout = dashboardView.findViewById(R.id.dashboardLayout);
 
+        //TODO: check if user account exists, if not then show button or user to setup account
+        dashboardLayout.setVisibility(View.GONE);
+
+        //setup account
+        initSetupAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(dashboardView.getContext(), AccountSetupActivity.class);
+                getActivity().overridePendingTransition(R.anim.push_top_in,R.anim.push_top_out);
+                startActivity(intent);
+            }
+        });
         //set onclick listeners
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
