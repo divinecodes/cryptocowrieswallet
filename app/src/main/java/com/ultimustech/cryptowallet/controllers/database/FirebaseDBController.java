@@ -2,7 +2,7 @@ package com.ultimustech.cryptowallet.controllers.database;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.ultimustech.cryptowallet.models.Code;
+import com.ultimustech.cryptowallet.models.Account;
 
 /**
  * Created by Poacher on 2/1/2018.
@@ -22,13 +22,14 @@ public class FirebaseDBController {
     public boolean uploadAccountCode(String accountCode, String accountHash,String uid,String passphrase1, String passphrase2){
 
         mCodeReference = FirebaseDatabase.getInstance().getReference();
-        //create new code json tree
+        //create new account json tree
         String key = mCodeReference.push().getKey();
 
-        Code code  = new Code(accountHash,accountCode,passphrase1, passphrase2);
+        Account account = new Account(accountHash,accountCode,passphrase1, passphrase2);
 
-        mCodeReference.child("AccountCodes").child(uid).setValue(code);
+        mCodeReference.child("Accounts").child(uid).setValue(account);
 
         return true;
     }
+
 }

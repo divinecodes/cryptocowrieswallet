@@ -33,7 +33,7 @@ public class NewTransactionActivity extends AppCompatActivity {
         progressSpinner = findViewById(R.id.transactionProgress);
 
         /**
-         * On Focus Changed on account Code. get Account code and get the corresponding account
+         * On Focus Changed on account Account. get Account code and get the corresponding account
          * hash code from the database using an asychronous background task
          * For now just change the text
          */

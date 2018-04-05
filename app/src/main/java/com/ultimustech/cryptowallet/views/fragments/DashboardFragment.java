@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,9 +19,14 @@ import android.widget.Toast;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.ultimustech.cryptowallet.R;
+import com.ultimustech.cryptowallet.controllers.database.FirebaseDBHelper;
+import com.ultimustech.cryptowallet.controllers.helpers.DefaultHelpers;
 import com.ultimustech.cryptowallet.controllers.helpers.MPChartsHelper;
 import com.ultimustech.cryptowallet.views.activities.AccountSetupActivity;
+import com.ultimustech.cryptowallet.views.activities.LoginActivity;
 import com.ultimustech.cryptowallet.views.activities.NewTransactionActivity;
 
 import java.io.IOException;
@@ -37,6 +44,11 @@ import okio.BufferedSink;
 public class DashboardFragment extends Fragment {
     private static final String TAG = "Dashboard Fragment";
 
+    private FirebaseDBHelper firebaseDBHelper = new FirebaseDBHelper();
+    private DefaultHelpers defaultHelpers = new DefaultHelpers();
+    private FirebaseAuth firebaseAuth;
+    private FirebaseAuth.AuthStateListener mAuthStateListener;
+
     private TextView txtAccountBalance;
     private TextView txtCCWExchangeRate;
     private TextView txtOtherCurrenyExchangeRate;
@@ -48,7 +60,7 @@ public class DashboardFragment extends Fragment {
     private TextView txtTransactionAmount;
     private TextView txtTransactionDate;
     private LinearLayout dashboardLayout;
-    private Button initSetupAccount;
+
 
     private PieChart pieChart;
     private LineChart bitcoinChart;
@@ -67,23 +79,43 @@ public class DashboardFragment extends Fragment {
         //setup view
         final View dashboardView = inflater.inflate(R.layout.fragment_dashboard,container,false);
 
+        //check if there is internet connection
+        if(!defaultHelpers.isOnline(dashboardView.getContext())){
+            Snackbar.make(dashboardView,"No Internet Connection",Snackbar.LENGTH_LONG).show();
+        }
+        //initialize firebase authentication instance and get the currenct user
+        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+
         txtPrimaryAccountHash = dashboardView.findViewById(R.id.account_hash);
         btnSend = dashboardView.findViewById(R.id.button_send);
-        initSetupAccount = dashboardView.findViewById(R.id.button_init_setup_account);
         dashboardLayout = dashboardView.findViewById(R.id.dashboardLayout);
 
-        //TODO: check if user account exists, if not then show button or user to setup account
-        dashboardLayout.setVisibility(View.GONE);
 
-        //setup account
-        initSetupAccount.setOnClickListener(new View.OnClickListener() {
+        /**
+         * check to see if the user has created an account
+         *
+         */
+        //initialize authstatelistenr
+        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(dashboardView.getContext(), AccountSetupActivity.class);
-                getActivity().overridePendingTransition(R.anim.push_top_in,R.anim.push_top_out);
-                startActivity(intent);
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser   user = firebaseAuth.getCurrentUser();
+                if (user != null){
+                    //let user set restaurant details
+                    if(!firebaseDBHelper.checkIfAccountCreated(user)){
+                        Intent i = new Intent(dashboardView.getContext(), AccountSetupActivity.class);
+                        startActivity(i);
+                    }
+
+                } else {
+                    //user is signed out
+                    //send user to sign up  activity
+                    Intent i = new Intent(dashboardView.getContext(), LoginActivity.class);
+                    startActivity(i);
+                }
             }
-        });
+        };
         //set onclick listeners
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
