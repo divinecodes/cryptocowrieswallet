@@ -1,6 +1,5 @@
 package com.ultimustech.cryptowallet.views.activities;
 
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -51,6 +50,7 @@ public class NewTransactionActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 progressSpinner.setVisibility(View.VISIBLE);
+
             }
         });
     }

@@ -35,6 +35,7 @@ public class MPChartsHelper {
         entries.add(new Entry(4f, 0));
         entries.add(new Entry(2f, 1));
         entries.add(new Entry(7f, 2));
+        entries.add(new Entry(5f, 3));
 
         LineDataSet dataset = new LineDataSet(entries,title);
         dataset.setDrawFilled(true);
