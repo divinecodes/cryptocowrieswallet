@@ -8,9 +8,8 @@ import android.app.Activity;
 
 public class DefaultHelpers {
     private boolean isHelping;
+
     public boolean isOnline(Context context){
-
-
         isHelping = false;
 
         try{

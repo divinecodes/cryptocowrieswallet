@@ -64,7 +64,7 @@ public class AccountSetupActivity extends AppCompatActivity {
                 if(user != null){
                     String userEmail = user.getEmail();
                     String accountCode = accountCodeHash.makeHash(userEmail);
-                    String accountHash = getResources().getString(R.string.sample_account_hash);
+                    String accountHash = "34adfadadfaofdn0134298rehadfadf";
                     boolean uploaded = firebaseDBController.uploadAccountCode(accountCode,
                             accountHash,user.getUid(), firstPassphrase,secondPassphrase);
                     if(!uploaded){

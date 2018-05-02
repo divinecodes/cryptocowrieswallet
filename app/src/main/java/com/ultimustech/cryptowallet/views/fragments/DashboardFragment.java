@@ -91,31 +91,12 @@ public class DashboardFragment extends Fragment {
         btnSend = dashboardView.findViewById(R.id.button_send);
         dashboardLayout = dashboardView.findViewById(R.id.dashboardLayout);
 
+        if(firebaseUser != null){
+            txtPrimaryAccountHash.setText(firebaseUser.getUid());
 
-        /**
-         * check to see if the user has created an account
-         *
-         */
-        //initialize authstatelistenr
-        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser   user = firebaseAuth.getCurrentUser();
-                if (user != null){
-                    //let user set restaurant details
-                    if(!firebaseDBHelper.checkIfAccountCreated(user)){
-                        Intent i = new Intent(dashboardView.getContext(), AccountSetupActivity.class);
-                        startActivity(i);
-                    }
+        }
 
-                } else {
-                    //user is signed out
-                    //send user to sign up  activity
-                    Intent i = new Intent(dashboardView.getContext(), LoginActivity.class);
-                    startActivity(i);
-                }
-            }
-        };
+
         //set onclick listeners
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override

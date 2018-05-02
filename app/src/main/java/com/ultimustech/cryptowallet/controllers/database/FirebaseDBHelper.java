@@ -8,6 +8,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+
+
+
 public class FirebaseDBHelper {
     private boolean isCreated;
     private FirebaseAuth firebaseAuth;
@@ -19,6 +22,7 @@ public class FirebaseDBHelper {
      * @return boolean
      */
     public boolean checkIfAccountCreated(FirebaseUser user){
+        isCreated = false;
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
         DatabaseReference accountRef = rootRef.child("Accounts").child(user.getUid());
         ValueEventListener eventListener = new ValueEventListener() {

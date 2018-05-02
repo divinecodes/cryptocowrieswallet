@@ -13,7 +13,7 @@
             android:id="@+id/account_qr"
             android:layout_gravity="center_horizontal"
             android:layout_margin="5dp"
-            android:src="@drawable/bg"
+            android:src="@drawable/logo"
             android:scaleType="fitXY"
             android:elevation="4dp"/>
         <TextView
@@ -47,8 +47,7 @@
             android:fontFamily="sans-serif-condensed"
             android:gravity="center_horizontal"
             android:text="@string/reveal_passphrase"
-            android:drawableEnd="@drawable/ic_eye_black_24dp"
-            android:drawablePadding="5dp"
+
             android:textSize="16sp"
             android:textStyle="bold"/>
         <TextView
@@ -103,7 +102,7 @@
             android:background="@color/colorPrimaryDark"
             android:layout_gravity="center_horizontal"
             android:text="@string/setup_account"
-            android:padding="2dp"
+            android:padding="10dp"
             android:layout_margin="10dp"
             android:textStyle="bold"
             android:elevation="4dp"
@@ -117,7 +116,7 @@
             android:background="@color/colorPrimaryDark"
             android:layout_gravity="center_horizontal"
             android:text="@string/change_details"
-            android:padding="2dp"
+            android:padding="10dp"
             android:layout_margin="10dp"
             android:textStyle="bold"
             android:elevation="4dp"
