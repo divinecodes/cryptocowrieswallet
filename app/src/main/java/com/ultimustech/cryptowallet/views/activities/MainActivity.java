@@ -22,6 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.ultimustech.cryptowallet.R;
+import com.ultimustech.cryptowallet.controllers.api.RestAPI;
 import com.ultimustech.cryptowallet.controllers.database.FirebaseDBHelper;
 import com.ultimustech.cryptowallet.views.fragments.AccountFragment;
 import com.ultimustech.cryptowallet.views.fragments.DashboardFragment;
@@ -50,6 +51,8 @@ public class MainActivity extends AppCompatActivity
         //initialize firebase auth
         mFirebaseAuth  = FirebaseAuth.getInstance();
 
+        RestAPI restAPI = new RestAPI();
+        restAPI.callAPI();
         //initialize Auth State Listener and check if user is logged in
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override

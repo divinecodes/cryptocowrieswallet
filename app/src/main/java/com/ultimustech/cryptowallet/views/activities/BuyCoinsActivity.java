@@ -57,6 +57,7 @@ public class BuyCoinsActivity extends AppCompatActivity {
         //set spinner elements
         final ArrayAdapter<CharSequence> paymentType = ArrayAdapter.createFromResource(getApplicationContext(),
                 R.array.paymentTypes, android.R.layout.simple_spinner_dropdown_item);
+        paymentType.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnPaymentMode.setAdapter(paymentType);
 
 
