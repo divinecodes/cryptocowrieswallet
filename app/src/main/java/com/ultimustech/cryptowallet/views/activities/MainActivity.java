@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity
     private String uid = "";
 
     //firebase AuthStateListener
+
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     private FirebaseAuth mFirebaseAuth;
 
@@ -46,10 +47,12 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        //set firebase persistance caching
 
         //initialize firebase auth
         mFirebaseAuth  = FirebaseAuth.getInstance();
+
+
 
         RestAPI restAPI = new RestAPI();
         restAPI.callAPI();

@@ -1,5 +1,6 @@
 package com.ultimustech.cryptowallet.views.activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -47,8 +48,14 @@ public class NewTransactionActivity extends AppCompatActivity {
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                progressSpinner.setVisibility(View.VISIBLE);
+                String strAmount = amount.getText().toString();
+                String to = accountCode.getText().toString();
 
+                String data = strAmount + ":" + to ;
+                Intent intent = new Intent(getApplication(),ProcessTransactionActivity.class);
+                intent.putExtra("data",data);
+                startActivity(intent);
+                overridePendingTransition(R.anim.push_top_in,R.anim.push_top_out);
             }
         });
     }

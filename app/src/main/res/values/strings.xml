@@ -99,6 +99,11 @@
     <string name="charge">Amount To Be Paid:</string>
     <string name="ghanacedis">100GHS</string>
     <string name="countrycode">start with country code(eg +233504849233)</string>
+    <string name="accountCodeLabel">Account Code</string>
+    <string name="update_account">Update Account Details</string>
+    <string name="update">Update</string>
+    <string name="dummy_contact">233054841975</string>
+    <string name="processing_transaction">Processing Transaction.... Please Wait</string>
 
     <string-array name="currencies">
         <item>GHC</item>

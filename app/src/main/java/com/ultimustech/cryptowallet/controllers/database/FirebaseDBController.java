@@ -49,6 +49,19 @@ public class FirebaseDBController {
         return true;
     }
 
+    public boolean updateAccountDetails(String passphrase1, String passphrase2, String contact, String uid){
+        firebaseDatabase =FirebaseDatabase.getInstance();
+        mAccountRef = firebaseDatabase.getReference("accounts").child(uid);
+
+        Map<String, Object> accountUpdates = new HashMap<>();
+        accountUpdates.put("passphrase1",passphrase1);
+        accountUpdates.put("passphrase2",passphrase2);
+        accountUpdates.put("contact",contact);
+
+        mAccountRef.updateChildren(accountUpdates);
+        return true;
+    }
+
     public String getUserDetails(FirebaseUser user){
         firebaseDatabase = FirebaseDatabase.getInstance();
         mAccountRef = firebaseDatabase.getReference().child("accounts").child(user.getUid());

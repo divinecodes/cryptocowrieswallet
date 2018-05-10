@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -45,7 +45,9 @@
             android:parentActivityName=".views.activities.MainActivity" />
         <activity
             android:name=".views.activities.BuyCoinsActivity"
-            android:parentActivityName=".views.activities.MainActivity"/>
+            android:parentActivityName=".views.activities.MainActivity" />
+        <activity android:name=".views.activities.UpdateAccountActivity" />
+        <activity android:name=".views.activities.ProcessTransactionActivity"></activity>
     </application>
 
 </manifest>

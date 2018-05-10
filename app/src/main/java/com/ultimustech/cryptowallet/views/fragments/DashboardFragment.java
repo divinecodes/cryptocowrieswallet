@@ -2,10 +2,8 @@ package com.ultimustech.cryptowallet.views.fragments;
 
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
@@ -27,24 +24,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.ultimustech.cryptowallet.R;
-import com.ultimustech.cryptowallet.controllers.database.FirebaseDBController;
 import com.ultimustech.cryptowallet.controllers.database.FirebaseDBHelper;
-import com.ultimustech.cryptowallet.controllers.helpers.DefaultHelpers;
+import com.ultimustech.cryptowallet.controllers.helpers.Validation;
 import com.ultimustech.cryptowallet.controllers.helpers.MPChartsHelper;
 import com.ultimustech.cryptowallet.models.Account;
-import com.ultimustech.cryptowallet.views.activities.AccountSetupActivity;
-import com.ultimustech.cryptowallet.views.activities.LoginActivity;
 import com.ultimustech.cryptowallet.views.activities.NewTransactionActivity;
-
-import java.io.IOException;
-import java.text.DecimalFormat;
-
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
-import okio.BufferedSink;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -53,7 +37,7 @@ public class DashboardFragment extends Fragment {
     private static final String TAG = "Dashboard Fragment";
 
     private FirebaseDBHelper firebaseDBHelper = new FirebaseDBHelper();
-    private DefaultHelpers defaultHelpers = new DefaultHelpers();
+    private Validation validation = new Validation();
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     private DatabaseReference accountRef;
@@ -65,7 +49,7 @@ public class DashboardFragment extends Fragment {
     private TextView txtPrimaryAccountHash;
     private Button btnReceive;
     private Button btnSend;
-    private TextView txtTransactionType;
+    private TextView txtAccountCode;
     private TextView txtTransactionAccount;
     private TextView txtTransactionAmount;
     private TextView txtTransactionDate;
@@ -90,9 +74,12 @@ public class DashboardFragment extends Fragment {
         final View dashboardView = inflater.inflate(R.layout.fragment_dashboard,container,false);
 
         //check if there is internet connection
-        if(!defaultHelpers.isOnline(dashboardView.getContext())){
+        if(!validation.isOnline(dashboardView.getContext())){
             Snackbar.make(dashboardView,"No Internet Connection",Snackbar.LENGTH_LONG).show();
         }
+//        //set firebase persistance caching
+//        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+
         //initialize firebase authentication instance and get the currenct user
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
@@ -100,6 +87,7 @@ public class DashboardFragment extends Fragment {
 
         txtPrimaryAccountHash = dashboardView.findViewById(R.id.account_hash);
         txtAccountBalance = dashboardView.findViewById(R.id.account_balance);
+        txtAccountCode = dashboardView.findViewById(R.id.accountCode);
 
         btnSend = dashboardView.findViewById(R.id.button_send);
         dashboardLayout = dashboardView.findViewById(R.id.dashboardLayout);
@@ -160,6 +148,7 @@ public class DashboardFragment extends Fragment {
                     txtPrimaryAccountHash.setText(account.accountHash);
                     String strBalance =  String.format("%.7f CCW",account.balance);
                     txtAccountBalance.setText(strBalance);
+                    txtAccountCode.setText(account.accountCode);
                 }
 
 

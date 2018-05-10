@@ -26,6 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.ultimustech.cryptowallet.R;
 import com.ultimustech.cryptowallet.models.Account;
 import com.ultimustech.cryptowallet.views.activities.AccountSetupActivity;
+import com.ultimustech.cryptowallet.views.activities.UpdateAccountActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -61,10 +62,15 @@ public class AccountFragment extends Fragment {
         // Inflate the layout for this fragment
         final View accountView = inflater.inflate(R.layout.fragment_account,container, false);
 
+        //set firebase persistance caching
+        //FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+
         //initialize firebase
         firebaseAuth  = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
         accountRef = FirebaseDatabase.getInstance().getReference().child("accounts").child(firebaseUser.getUid());
+
+
 
         //get wigets
         qrCode = accountView.findViewById(R.id.account_qr);
@@ -106,6 +112,17 @@ public class AccountFragment extends Fragment {
                 accountView.getContext().startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
 
+            }
+        });
+
+
+        //set update
+        changeDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(accountView.getContext(), UpdateAccountActivity.class);
+                accountView.getContext().startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.push_left_out,R.anim.push_left_in);
             }
         });
         return accountView;

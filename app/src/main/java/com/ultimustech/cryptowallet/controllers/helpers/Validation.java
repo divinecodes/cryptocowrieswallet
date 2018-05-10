@@ -6,7 +6,9 @@ import android.net.NetworkInfo;
 import android.util.Log;
 import android.app.Activity;
 
-public class DefaultHelpers {
+import com.google.android.gms.flags.impl.DataUtils;
+
+public class Validation {
     private boolean isHelping;
 
     public boolean isOnline(Context context){
@@ -27,5 +29,34 @@ public class DefaultHelpers {
             Log.e("CONNECTIVITY", e.toString());
         }
         return isHelping;
+    }
+
+    /**
+     * validation to see if the input is a number
+     * @param input
+     * @return boolean true/false
+     */
+    public static boolean validNumber(String input){
+        if(input.isEmpty()){
+            return false;
+        }
+
+        int val = Integer.parseInt(input);
+        if(val < 0){
+            return false;
+        }
+
+        //Too Expensive
+//        try {
+//            double d = Double.parseDouble(input);
+//        } catch (NumberFormatException nfe){
+//            return false;
+//        }
+
+        if(!input.matches("-?\\\\d+(\\\\.\\\\d+)?")){
+            return false;
+        }
+
+        return true;
     }
 }
