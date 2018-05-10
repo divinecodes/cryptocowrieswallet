@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:background="@color/colorBackground"
     android:padding="5dp"
     android:layout_margin="5dp">
     <include
@@ -46,7 +47,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
+        android:background="@drawable/buttongradient"
         android:layout_gravity="center_horizontal"
         android:text="@string/buy_ccw"
         android:drawablePadding="5dp"

@@ -25,6 +25,10 @@ import com.ultimustech.cryptowallet.controllers.auth.InputValidation;
 import com.ultimustech.cryptowallet.controllers.helpers.AccountCodeHash;
 import com.ultimustech.cryptowallet.controllers.database.FirebaseDBController;
 
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
+
+import java.security.Security;
+
 
 public class SignupActivity extends AppCompatActivity {
     private static final String TAG = "SignUpActivity";
@@ -135,9 +139,7 @@ public class SignupActivity extends AppCompatActivity {
                             Log.d(TAG, "createUserWithEmail: successs");
                             progressDialog.dismiss();
                             onSignupSuccess();
-                            FirebaseUser user = mFirebaseAuth.getCurrentUser();
-                            //send email verification
-                            AuthController.sendEmailVerification(user);
+
                             finish();
                         } else {
                             progressDialog.dismiss();
@@ -154,6 +156,9 @@ public class SignupActivity extends AppCompatActivity {
         message = getResources().getString(R.string.signup_success);
         Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
         setResult(RESULT_OK, null);
+        FirebaseUser user = mFirebaseAuth.getCurrentUser();
+        //send email verification
+        sendEmailVerification(user);
         //redirect user to main activity
         Intent i = new Intent(getApplicationContext(),MainActivity.class);
         startActivity(i);
@@ -172,7 +177,9 @@ public class SignupActivity extends AppCompatActivity {
     /**
      * send verification email using firebase
      */
-    private void sendEmailVerification(FirebaseUser user){
+    private static void sendEmailVerification(FirebaseUser user){
         user.sendEmailVerification();
     }
+
+
 }

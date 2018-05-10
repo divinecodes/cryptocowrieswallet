@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:padding="5dp"
+        android:padding="10dp"
         app:cardCornerRadius="1dp"
         app:contentPadding="1dp"
         app:cardElevation="1dp">
@@ -49,18 +49,18 @@
                 android:inputType="text" />
         </android.support.design.widget.TextInputLayout>
 
-        <Button
-            android:id="@+id/scan_qr_code"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_gravity="center_horizontal"
-            android:padding="10dp"
-            android:layout_marginTop="28dp"
-            android:background="@color/colorPrimary"
-            android:text="@string/scan_account_qr"
-            android:textColor="@color/colorWhite" />
+        <!--<Button-->
+            <!--android:id="@+id/scan_qr_code"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginEnd="8dp"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:layout_gravity="center_horizontal"-->
+            <!--android:padding="10dp"-->
+            <!--android:layout_marginTop="28dp"-->
+            <!--android:background="@color/colorPrimary"-->
+            <!--android:text="@string/scan_account_qr"-->
+            <!--android:textColor="@color/colorWhite" />-->
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/inputAmount"
@@ -100,15 +100,35 @@
                     android:inputType="text" />
             </android.support.design.widget.TextInputLayout>
 
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/inputPassphrase2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="28dp"
+                android:textColor="@color/colorSecondaryText">
+                <EditText
+                    android:id="@+id/userPassphrase2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:hint="@string/enterPassphrase"
+                    android:inputType="text" />
+            </android.support.design.widget.TextInputLayout>
 
-        <Button
+
+            <Button
             android:id="@+id/sendButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="52dp"
-            android:background="@color/colorPrimary"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/buttongradient"
             android:elevation="4dp"
             android:padding="10dp"
             android:text="@string/send"

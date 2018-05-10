@@ -14,7 +14,6 @@ public class NewTransactionActivity extends AppCompatActivity {
 
     private TextView accountCode;
     private TextView amount;
-    private Button btnScanQr;
     private Button btnSend;
     private ProgressBar progressSpinner;
 
@@ -27,7 +26,6 @@ public class NewTransactionActivity extends AppCompatActivity {
         //set widgets
         accountCode = findViewById(R.id.sendAccount);
         amount  = findViewById(R.id.sendAmount);
-        btnScanQr = findViewById(R.id.scan_qr_code);
         btnSend = findViewById(R.id.sendButton);
         progressSpinner = findViewById(R.id.transactionProgress);
 

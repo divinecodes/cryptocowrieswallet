@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity
                     //user is signed in get/user id
                     uid = user.getUid();
                     DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-                    DatabaseReference accountRef = rootRef.child("Accounts").child(uid);
+                    DatabaseReference accountRef = rootRef.child("accounts").child(uid);
                     ValueEventListener eventListener = new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
@@ -83,8 +83,6 @@ public class MainActivity extends AppCompatActivity
                     };
                     accountRef.addListenerForSingleValueEvent(eventListener);
                 }
-
-
             }
         };
 

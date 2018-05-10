@@ -64,7 +64,7 @@ public class AccountFragment extends Fragment {
         //initialize firebase
         firebaseAuth  = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
-        accountRef = FirebaseDatabase.getInstance().getReference().child("Accounts").child(firebaseUser.getUid());
+        accountRef = FirebaseDatabase.getInstance().getReference().child("accounts").child(firebaseUser.getUid());
 
         //get wigets
         qrCode = accountView.findViewById(R.id.account_qr);
@@ -122,10 +122,13 @@ public class AccountFragment extends Fragment {
                 Account account = dataSnapshot.getValue(Account.class);
 
                 if(account != null){
+                    setup.setVisibility(View.GONE);
                     passphrase1.setText(account.passphrase1);
                     passphrase2.setText(account.passphrase2);
                     accountCode.setText(account.accountHash);
                     accountEmail.setText(firebaseUser.getEmail());
+                } else {
+                    changeDetails.setVisibility(View.GONE);
                 }
             }
 

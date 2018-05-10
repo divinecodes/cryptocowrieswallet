@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:padding="5dp"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground">
 
     <TextView
         android:layout_width="match_parent"
@@ -52,12 +53,24 @@
             android:inputType="text"
             android:hint="@string/passphrase_label_2"/>
     </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/input_contact"
+        android:inputType="phone"
+        android:hint="@string/countrycode"/>
+    </android.support.design.widget.TextInputLayout>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/setup_account"
         android:textColor="@color/colorWhite"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/buttongradient"
         android:padding="2dp"
         android:elevation="2dp"
         android:id="@+id/setup_crypto_account"

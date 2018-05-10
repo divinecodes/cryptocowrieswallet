@@ -21,15 +21,23 @@ import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.ultimustech.cryptowallet.R;
+import com.ultimustech.cryptowallet.controllers.database.FirebaseDBController;
 import com.ultimustech.cryptowallet.controllers.database.FirebaseDBHelper;
 import com.ultimustech.cryptowallet.controllers.helpers.DefaultHelpers;
 import com.ultimustech.cryptowallet.controllers.helpers.MPChartsHelper;
+import com.ultimustech.cryptowallet.models.Account;
 import com.ultimustech.cryptowallet.views.activities.AccountSetupActivity;
 import com.ultimustech.cryptowallet.views.activities.LoginActivity;
 import com.ultimustech.cryptowallet.views.activities.NewTransactionActivity;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -48,6 +56,8 @@ public class DashboardFragment extends Fragment {
     private DefaultHelpers defaultHelpers = new DefaultHelpers();
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
+    private DatabaseReference accountRef;
+    private ValueEventListener accountListener;
 
     private TextView txtAccountBalance;
     private TextView txtCCWExchangeRate;
@@ -86,16 +96,13 @@ public class DashboardFragment extends Fragment {
         //initialize firebase authentication instance and get the currenct user
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        accountRef = FirebaseDatabase.getInstance().getReference().child("accounts").child(firebaseUser.getUid());
 
         txtPrimaryAccountHash = dashboardView.findViewById(R.id.account_hash);
+        txtAccountBalance = dashboardView.findViewById(R.id.account_balance);
+
         btnSend = dashboardView.findViewById(R.id.button_send);
         dashboardLayout = dashboardView.findViewById(R.id.dashboardLayout);
-
-        if(firebaseUser != null){
-            txtPrimaryAccountHash.setText(firebaseUser.getUid());
-
-        }
-
 
         //set onclick listeners
         btnSend.setOnClickListener(new View.OnClickListener() {
@@ -137,6 +144,37 @@ public class DashboardFragment extends Fragment {
 
         // Inflate the layout for this fragment
         return dashboardView;
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+
+        ValueEventListener accountEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //get account details
+                Account account = dataSnapshot.getValue(Account.class);
+
+                if(account != null){
+                    txtPrimaryAccountHash.setText(account.accountHash);
+                    String strBalance =  String.format("%.7f CCW",account.balance);
+                    txtAccountBalance.setText(strBalance);
+                }
+
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.i(TAG, "Loading Details Error: "+databaseError.getCode());
+            }
+        };
+
+        accountRef.addValueEventListener(accountEventListener);
+
+        accountListener = accountEventListener;
     }
 
 }

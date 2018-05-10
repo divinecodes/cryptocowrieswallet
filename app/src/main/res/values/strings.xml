@@ -98,6 +98,7 @@
     <string name="enterLoyaltyCode">Enter Loyalty Code</string>
     <string name="charge">Amount To Be Paid:</string>
     <string name="ghanacedis">100GHS</string>
+    <string name="countrycode">start with country code(eg +233504849233)</string>
 
     <string-array name="currencies">
         <item>GHC</item>

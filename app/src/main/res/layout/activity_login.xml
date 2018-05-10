@@ -8,7 +8,7 @@
     android:theme="@style/FullscreenTheme"
     tools:context="com.ultimustech.cryptowallet.views.activities.LoginActivity"
     android:fitsSystemWindows="true"
-    android:background="@color/colorPrimary">
+    android:background="@drawable/gradientbackground">
 
     <ScrollView
         android:layout_width="match_parent"

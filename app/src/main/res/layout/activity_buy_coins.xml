@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/colorBackground"
     tools:context="com.ultimustech.cryptowallet.views.activities.BuyCoinsActivity">
 
     <android.support.v7.widget.CardView
@@ -218,7 +219,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:background="@color/colorPrimary"
+                android:background="@drawable/buttongradient"
                 android:elevation="4dp"
                 android:textStyle="bold"
                 android:padding="10dp"
