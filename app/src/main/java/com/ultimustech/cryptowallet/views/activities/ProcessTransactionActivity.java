@@ -33,7 +33,8 @@ public class ProcessTransactionActivity extends AppCompatActivity {
              */
             String data1 = arrData[0];
             String data2 = arrData[1];
-            Toast.makeText(this, "Data 1"+data1 +" Data2 "+data2, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Data 1"+data1 +" Data2 "+data2, Toast.LENGTH_LONG).show();
+
         } else {
             Toast.makeText(getApplicationContext(), "No Transaction Data Received",Toast.LENGTH_LONG).show();
             finish();

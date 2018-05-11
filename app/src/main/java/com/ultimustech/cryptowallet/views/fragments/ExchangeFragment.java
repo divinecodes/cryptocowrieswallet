@@ -36,17 +36,17 @@ public class ExchangeFragment extends Fragment {
                              Bundle savedInstanceState) {
         //get view
         View exchangesView = inflater.inflate(R.layout.fragment_exchange,container, false);
-        recyclerView = exchangesView.findViewById(R.id.exchangesList);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-        //todo: get the list from firebase and add to the arraylist
-        ArrayList<String>  hashes = new ArrayList<>();
-        String[] hash = getResources().getStringArray(R.array.sampleHash);
-        for(int i = 0; i < hash.length; i++) hashes.add(hash[i]);
-
-        recyclerView.setAdapter(new ExchangesAdapter(hashes));
-        // Inflate the layout for this fragment
+//        recyclerView = exchangesView.findViewById(R.id.exchangesList);
+//        recyclerView.setHasFixedSize(true);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+//
+//        //todo: get the list from firebase and add to the arraylist
+//        ArrayList<String>  hashes = new ArrayList<>();
+//        String[] hash = getResources().getStringArray(R.array.sampleHash);
+//        for(int i = 0; i < hash.length; i++) hashes.add(hash[i]);
+//
+//        recyclerView.setAdapter(new ExchangesAdapter(hashes));
+//        // Inflate the layout for this fragment
         return exchangesView;
     }
 

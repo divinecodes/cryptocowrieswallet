@@ -21,8 +21,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.ultimustech.cryptowallet.R;
 import com.ultimustech.cryptowallet.controllers.api.RestAPI;
+import com.ultimustech.cryptowallet.controllers.database.FirebaseDBController;
 import com.ultimustech.cryptowallet.controllers.database.FirebaseDBHelper;
 import com.ultimustech.cryptowallet.views.fragments.AccountFragment;
 import com.ultimustech.cryptowallet.views.fragments.DashboardFragment;
@@ -40,6 +43,8 @@ public class MainActivity extends AppCompatActivity
     private FirebaseAuth mFirebaseAuth;
 
     private FirebaseDBHelper firebaseDBHelper;
+    private FirebaseDBController firebaseDBController;
+    private FirebaseUser firebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +56,11 @@ public class MainActivity extends AppCompatActivity
 
         //initialize firebase auth
         mFirebaseAuth  = FirebaseAuth.getInstance();
+        firebaseUser = mFirebaseAuth.getCurrentUser();
+        FirebaseMessaging.getInstance().setAutoInitEnabled(true);
+        String refreshToken = FirebaseInstanceId.getInstance().getToken();
+        firebaseDBController = new FirebaseDBController();
+        firebaseDBController.updateNotificationToken(refreshToken, firebaseUser.getUid());
 
 
 
@@ -182,9 +192,11 @@ public class MainActivity extends AppCompatActivity
             fragmentManager.beginTransaction().replace(R.id.main_frame, new AccountFragment()).commit();
             setTitle(R.string.nav_account);
         } else if (id == R.id.nav_settings) {
-
+            Intent intent  = new Intent(getApplicationContext(), SettingActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_help) {
-
+            Intent intent  = new Intent(getApplicationContext(), HelpActivity.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
