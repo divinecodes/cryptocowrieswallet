@@ -70,10 +70,37 @@ public class NewTransactionActivity extends AppCompatActivity {
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    Account account = firebaseDBController.getUserDetails(firebaseUser);
-                    if(account == null){
-                        Toast.makeText(getApplicationContext(),"Null Object Received",Toast.LENGTH_LONG).show();
+                final Account[] myAccount = new Account[1];
+                firebaseDatabase = FirebaseDatabase.getInstance();
+                accountRef = firebaseDatabase.getReference().child("accounts").child(firebaseUser.getUid());
+
+                //attach a listener to read the data
+                ValueEventListener accountsValue = new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        myAccount[0] = dataSnapshot.getValue(Account.class);
+                        if(myAccount[0] == null){
+                            Toast.makeText(getApplicationContext(), "Damn Null",Toast.LENGTH_LONG).show();
+                        } else {
+
+                            Toast.makeText(getApplicationContext(), myAccount[0].accountCode ,Toast.LENGTH_LONG).show();
+                        }
+
                     }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                    }
+                };
+
+                accountRef.addValueEventListener(accountsValue);
+
+                accountListener = accountsValue;
+
+
+//                    if(myAccount[0] == null){
+//                        Toast.makeText(getApplicationContext(),"Null Object Received",Toast.LENGTH_LONG).show();
+//                    }
 //                    String code = sendAccount.getText().toString();
 //                    String address = firebaseDBController.getAccountAddress(code);
 //                    if(address != null){
@@ -94,10 +121,9 @@ public class NewTransactionActivity extends AppCompatActivity {
 //                String phrase1 = passphrase1.getText().toString();
 //                String phrase2 = passphrase2.getText().toString();
 //
-//                if(phrase1.equals(account.passphrase1) && phrase2.equals(account.passphrase2)){
+////                if(phrase1.equals(account.passphrase1) && phrase2.equals(account.passphrase2)){
 //                    //concatenate the transaction data and send across the intent
-//                    String data = account + ":" + sendAccount.getText().toString() + ":"+sendAmount.getText().toString();
-//
+//                    String data = myAccount[0].accountHash + ":" + sendAccount.getText().toString() + ":"+sendAmount.getText().toString();
 //                    Intent intent = new Intent(getApplication(),ProcessTransactionActivity.class);
 //                    intent.putExtra("data",data);
 //                    startActivity(intent);

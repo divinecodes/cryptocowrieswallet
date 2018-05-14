@@ -60,8 +60,9 @@ public class MainActivity extends AppCompatActivity
         FirebaseMessaging.getInstance().setAutoInitEnabled(true);
         String refreshToken = FirebaseInstanceId.getInstance().getToken();
         firebaseDBController = new FirebaseDBController();
-        firebaseDBController.updateNotificationToken(refreshToken, firebaseUser.getUid());
-
+        if(firebaseUser != null) {
+            firebaseDBController.updateNotificationToken(refreshToken, firebaseUser.getUid());
+        }
 
 
         RestAPI restAPI = new RestAPI();

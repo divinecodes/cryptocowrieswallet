@@ -46,9 +46,9 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    implementation files('libs/CryptoCowries.jar')
     implementation files('libs/hubtelapi-java-v1.jar')
     implementation files('libs/client-3.2.0.jar')
+    implementation files('libs/CryptoCowries.jar')
 }
 
 

@@ -83,7 +83,9 @@ public class DashboardFragment extends Fragment {
         //initialize firebase authentication instance and get the currenct user
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-        accountRef = FirebaseDatabase.getInstance().getReference().child("accounts").child(firebaseUser.getUid());
+        if(firebaseUser != null){
+            accountRef = FirebaseDatabase.getInstance().getReference().child("accounts").child(firebaseUser.getUid());
+        }
 
         txtPrimaryAccountHash = dashboardView.findViewById(R.id.account_hash);
         txtAccountBalance = dashboardView.findViewById(R.id.account_balance);
@@ -161,7 +163,9 @@ public class DashboardFragment extends Fragment {
             }
         };
 
-        accountRef.addValueEventListener(accountEventListener);
+        if(accountRef != null){
+            accountRef.addValueEventListener(accountEventListener);
+        }
 
         accountListener = accountEventListener;
     }

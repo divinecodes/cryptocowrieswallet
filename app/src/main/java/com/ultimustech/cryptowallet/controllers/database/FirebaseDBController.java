@@ -21,7 +21,7 @@ import java.util.Map;
 
 public class FirebaseDBController {
     private FirebaseDatabase firebaseDatabase;
-    private DatabaseReference mTransactionReference;
+    private DatabaseReference mTransactionRef;
     private DatabaseReference databaseReference;
     private DatabaseReference mAccountRef;
     private DatabaseReference tokensRef;
@@ -79,18 +79,38 @@ public class FirebaseDBController {
         return true;
     }
 
-    public boolean updateTransactions(Transaction transaction, String uid){
+    public boolean uploadTransactions(Transaction transaction ){
         firebaseDatabase =FirebaseDatabase.getInstance();
-        tokensRef = firebaseDatabase.getReference("transactions").child(uid);
+        String key = mTransactionRef.child("transactions").push().getKey();
+        mTransactionRef = firebaseDatabase.getReference("transactions").child(transaction.sender);
 
-        Map<String, Object> tokensUpdates = new HashMap<>();
-        //tokensUpdates.put("token",token);
+        Map<String, Object> transactionDetails = transaction.toMap();
 
-        tokensRef.updateChildren(tokensUpdates);
+        Map<String, Object> transactionUpdates = new HashMap<>();
+        transactionDetails.put(key,transaction);
+        mTransactionRef.updateChildren(transactionUpdates);
+
+
+        //update the other users transaction tree
+        String address = transaction.receiver;
+        updateReceiverTransactionTree(address,transaction);
         return true;
     }
 
-    public Account getUserDetails(FirebaseUser user){
+    private boolean updateReceiverTransactionTree(String address,Transaction transaction){
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        String key = mTransactionRef.child("transactions").push().getKey();
+        mTransactionRef = firebaseDatabase.getReference("transactions").child(address);
+
+        Map<String, Object> transactionDetails = transaction.toMap();
+        Map<String, Object> transactionUpdates = new HashMap<>();
+        transactionDetails.put(key,transaction);
+
+        mTransactionRef.updateChildren(transactionUpdates);
+        return true;
+    }
+
+    public Account[] getUserDetails(FirebaseUser user){
         final Account[] myAccount = new Account[1];
         firebaseDatabase = FirebaseDatabase.getInstance();
         mAccountRef = firebaseDatabase.getReference().child("accounts").child(user.getUid());
@@ -124,7 +144,7 @@ public class FirebaseDBController {
 //                Log.e("FIREBASEDB","The read failed: "+databaseError.getCode());
 //            }
 //        });
-        return myAccount[0];
+        return myAccount;
     }
 
     public String getAccountAddress(final String code){

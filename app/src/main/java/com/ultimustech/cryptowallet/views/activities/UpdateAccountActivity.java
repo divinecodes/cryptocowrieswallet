@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -65,7 +66,7 @@ public class UpdateAccountActivity extends AppCompatActivity {
                 String contact = txtEditContact.getText().toString();
 
                 if(firebaseDBController.updateAccountDetails(passphrase1,passphrase2,contact,firebaseUser.getUid())){
-                    Snackbar.make(v.getRootView(),"Account Details Updated!",Snackbar.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Account Details Updated Successfully ",Toast.LENGTH_LONG ).show();
                     finish();
                 } else {
                     Snackbar.make(v,"Unable to Update Account Details!", Snackbar.LENGTH_LONG).show();
