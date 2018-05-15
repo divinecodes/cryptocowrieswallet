@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.data.Entry;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -29,6 +30,8 @@ import com.ultimustech.cryptowallet.controllers.helpers.Validation;
 import com.ultimustech.cryptowallet.controllers.helpers.MPChartsHelper;
 import com.ultimustech.cryptowallet.models.Account;
 import com.ultimustech.cryptowallet.views.activities.NewTransactionActivity;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -111,25 +114,32 @@ public class DashboardFragment extends Fragment {
 
         MPChartsHelper.pieChartHelper(pieChart, dashboardView.getResources().getColor(R.color.colorPrimaryDark));
 
+        ArrayList<Entry> entries  = new ArrayList<Entry>();
+        entries.add(new Entry(1f, 0));
+        entries.add(new Entry(2f, 4));
+        entries.add(new Entry(3f, 2));
+        entries.add(new Entry(5f, 3));
+        entries.add(new Entry(7f, 1));
+
         //set data for bitcoin chart
         Description bitcoinDesc  = new Description();
         bitcoinDesc.setText("Bitcoin Price");
         bitcoinDesc.setTextSize(15);
         bitcoinDesc.setTextColor(dashboardView.getResources().getColor(R.color.colorPrimaryDark));
-        MPChartsHelper.lineChartHelper(bitcoinChart, "Bitcoin ", bitcoinDesc);
+        MPChartsHelper.lineChartHelper(bitcoinChart, "Bitcoin ", bitcoinDesc,entries);
 
         //set up data for  ethereum
         Description etherDesc = new Description();
         etherDesc.setText("Ether Price");
         etherDesc.setTextSize(15);
         etherDesc.setTextColor(dashboardView.getResources().getColor(R.color.colorAccent));
-        MPChartsHelper.lineChartHelper(etherChart, "Ethereum", etherDesc);
+        MPChartsHelper.lineChartHelper(etherChart, "Ethereum", etherDesc,entries);
 
         //set up data for litecoin
         Description liteDesc = new Description();
         liteDesc.setText("Litecoin Price ");
         liteDesc.setTextColor(dashboardView.getResources().getColor(R.color.colorPrimary));
-        MPChartsHelper.lineChartHelper(litecoinChart, "LiteCoin ", liteDesc);
+        MPChartsHelper.lineChartHelper(litecoinChart, "LiteCoin ", liteDesc,entries);
 
 
         // Inflate the layout for this fragment
@@ -152,9 +162,6 @@ public class DashboardFragment extends Fragment {
                     txtAccountBalance.setText(strBalance);
                     txtAccountCode.setText(account.accountCode);
                 }
-
-
-
             }
 
             @Override

@@ -16,6 +16,7 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.ultimustech.cryptowallet.R;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -30,12 +31,7 @@ public class MPChartsHelper {
      * @param title
      * @param description
      */
-    public static void lineChartHelper(LineChart lineChart,  String title, Description description){
-        ArrayList<Entry> entries  = new ArrayList<Entry>();
-        entries.add(new Entry(4f, 0));
-        entries.add(new Entry(2f, 1));
-        entries.add(new Entry(7f, 2));
-        entries.add(new Entry(5f, 3));
+    public static void lineChartHelper(LineChart lineChart, String title, Description description, ArrayList<Entry> entries){
 
         LineDataSet dataset = new LineDataSet(entries,title);
         dataset.setDrawFilled(true);

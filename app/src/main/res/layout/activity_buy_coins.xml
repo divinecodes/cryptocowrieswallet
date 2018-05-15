@@ -5,9 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorBackground"
     tools:context="com.ultimustech.cryptowallet.views.activities.BuyCoinsActivity">
-
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,50 +22,35 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center">
-            <TextView
-                android:layout_width="wrap_content"
+            <Button
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:text="@string/sample_account_hash"
                 android:textAllCaps="true"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="14sp"
+                android:background="@drawable/gradientbackground"
+                android:textColor="@color/colorWhite"
+                android:textSize="13sp"
+                android:padding="10dp"
                 android:fontFamily="sans-monospace"
                 android:textStyle="bold"
-                android:id="@+id/seller_public_address"/>
-            <TextView
+                android:id="@+id/buyer_public_address"/>
+            <Button
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="3dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
                 android:text="@string/sample_coins"
                 android:textAllCaps="true"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="20sp"
+                android:background="@drawable/gradientbackground"
+                android:textColor="@color/colorWhite"
+                android:textSize="14sp"
+                android:padding="5dp"
                 android:fontFamily="sans-monospace"
                 android:textStyle="bold"
-                android:id="@+id/seller_coins_for_sale"/>
+                android:id="@+id/amount_to_buy"/>
             <include
                 layout="@layout/app_divider_horizontal"
                 />
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/inputAmount"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:textColor="@color/colorSecondaryText">
-                <EditText
-                    android:id="@+id/amountToBuy"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:hint="@string/enterAmount"
-                    android:inputType="numberDecimal"
-                    />
-            </android.support.design.widget.TextInputLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -89,6 +72,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/ghanacedis"
                     android:textStyle="bold"
+                    android:id="@+id/ghanacedis"
                     android:textColor="@color/colorSecondaryText"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="10dp"/>
@@ -165,7 +149,8 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:hint="@string/enterCreditCardPin"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        android:maxLength="6"/>
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
         <LinearLayout
@@ -190,8 +175,8 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:hint="@string/enterLoyaltyCode"
-                    android:inputType="phone"
-                    />
+                    android:inputType="text"
+                    android:maxLength="7" />
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
             <android.support.design.widget.TextInputLayout
@@ -202,13 +187,31 @@
                 android:layout_marginTop="8dp"
                 android:textColor="@color/colorSecondaryText">
                 <EditText
-                    android:id="@+id/enter_passphrase"
+                    android:id="@+id/enter_passphrase1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:hint="@string/enterPassphrase"
+                    android:hint="@string/enterPassphrase1"
+                    android:inputType="text"
+                    />
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/colorSecondaryText">
+                <EditText
+                    android:id="@+id/enter_passphrase2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:hint="@string/enterPassphrase2"
                     android:inputType="text"
                     />
             </android.support.design.widget.TextInputLayout>

@@ -57,7 +57,8 @@
             android:name=".views.activities.BuyCoinsActivity"
             android:parentActivityName=".views.activities.MainActivity" />
         <activity android:name=".views.activities.UpdateAccountActivity" />
-        <activity android:name=".views.activities.ProcessTransactionActivity" />
+        <activity android:name=".views.activities.ProcessTransactionActivity"
+            android:parentActivityName=".views.activities.MainActivity"/>
         <activity android:name=".views.activities.SettingActivity" />
         <activity android:name=".views.activities.HelpActivity"/>
         <service

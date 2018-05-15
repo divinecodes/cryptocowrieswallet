@@ -90,7 +90,7 @@
     <string name="sample_coins">100CCW</string>
     <string name="coins_for_sale">Coins For Sale:</string>
     <string name="enterAmount">Enter Amount</string>
-    <string name="buy">Buy</string>
+    <string name="buy">BUY</string>
     <string name="buyCoinsTitle">Buy Coins</string>
     <string name="enterMomoNumber">Enter Mobile Money Number</string>
     <string name="enterCreditCardPin">Enter Credit Card Pin</string>
@@ -141,5 +141,8 @@
         It should describe the category of notifications that will be sent through this channel
      -->
     <string name="default_notification_channel_name" translatable="true">News</string>
+    <string name="cryptocowries_shore">CRYPTOCOWRIES SHORE</string>
+    <string name="enterPassphrase1">Enter Passphrase 1</string>
+    <string name="enterPassphrase2">Enter  Passphrase 2</string>
 </resources>
 

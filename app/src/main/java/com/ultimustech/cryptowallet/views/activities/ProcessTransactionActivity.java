@@ -1,6 +1,7 @@
 package com.ultimustech.cryptowallet.views.activities;
 
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -23,23 +24,28 @@ public class ProcessTransactionActivity extends AppCompatActivity {
         processingAnim = findViewById(R.id.processing);
 
         Intent intent = getIntent();
+        String type = intent.getStringExtra("type");
         String data = intent.getStringExtra("data");
 
-        if(data != null){
-            String [] arrData = data.split(":");
-            /**
-             * TODO: sending the data to the blockchain  via an async activity
-             * for now toast the the details
-             */
-            String data1 = arrData[0];
-            String data2 = arrData[1];
-            Toast.makeText(this, "Data 1"+data1 +" Data2 "+data2, Toast.LENGTH_LONG).show();
-
+        if(type.equalsIgnoreCase("buy")){
+            Toast.makeText(this, data,Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(getApplicationContext(), "No Transaction Data Received",Toast.LENGTH_LONG).show();
-            finish();
-        }
 
+            if(data != null){
+                String [] arrData = data.split(":");
+                /**
+                 * TODO: sending the data to the blockchain  via an async activity
+                 * for now toast the the details
+                 */
+                String data1 = arrData[0];
+                String data2 = arrData[1];
+                Toast.makeText(this, "Data 1"+data1 +" Data2 "+data2, Toast.LENGTH_LONG).show();
+
+            } else {
+                Toast.makeText(getApplicationContext(), "No Transaction Data Received",Toast.LENGTH_LONG).show();
+                finish();
+            }
+        }
     }
 
     @Override

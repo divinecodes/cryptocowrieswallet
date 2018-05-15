@@ -41,8 +41,8 @@ public class Validation {
             return false;
         }
 
-        int val = Integer.parseInt(input);
-        if(val < 0){
+        double val = Double.parseDouble(input);
+        if(val < 0.0){
             return false;
         }
 
@@ -53,7 +53,32 @@ public class Validation {
 //            return false;
 //        }
 
-        if(!input.matches("-?\\\\d+(\\\\.\\\\d+)?")){
+//        if(!input.matches("-?\\\\d+(\\\\.\\\\d+)?")){
+//            return false;
+//        }
+
+        return true;
+    }
+
+    /**
+     * check for the validity of the credit card pin
+     * @param input
+     * @return
+     */
+    public static boolean isCorrectPin(String input){
+        if(input.isEmpty()){
+            return false;
+        }
+
+        if(input.length() > 4){
+            return false;
+        }
+        try{
+            int val = Integer.parseInt(input);
+            if(val < 0){
+                return false;
+            }
+        } catch (Exception e){
             return false;
         }
 

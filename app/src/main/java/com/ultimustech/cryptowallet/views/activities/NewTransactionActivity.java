@@ -126,6 +126,7 @@ public class NewTransactionActivity extends AppCompatActivity {
 //                    String data = myAccount[0].accountHash + ":" + sendAccount.getText().toString() + ":"+sendAmount.getText().toString();
 //                    Intent intent = new Intent(getApplication(),ProcessTransactionActivity.class);
 //                    intent.putExtra("data",data);
+//                     intent.putExtra("type","send");
 //                    startActivity(intent);
 //                    overridePendingTransition(R.anim.push_top_in,R.anim.push_top_out);
 //                } else {

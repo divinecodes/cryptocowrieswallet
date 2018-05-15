@@ -42,6 +42,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:textColorHint="@color/colorWhite"
+                android:textColorHighlight="@android:color/white"
                 >
                 <EditText
                     android:layout_width="match_parent"
