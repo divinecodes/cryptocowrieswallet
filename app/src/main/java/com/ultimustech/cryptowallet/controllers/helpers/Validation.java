@@ -84,4 +84,25 @@ public class Validation {
 
         return true;
     }
+
+    /**
+     * check for the validity of a phone number (gh)
+     */
+    public static boolean isValidPhoneNumber(String input){
+        if(input.isEmpty()){
+            return false;
+        }
+
+        if(input.length() != 12){
+            return false;
+        }
+
+        try{
+            int val = Integer.parseInt(input);
+        } catch (Exception e){
+            return false;
+        }
+
+        return true;
+    }
 }

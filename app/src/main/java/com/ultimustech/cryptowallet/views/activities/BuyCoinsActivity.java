@@ -140,7 +140,12 @@ public class BuyCoinsActivity extends AppCompatActivity {
 
                 if(userPassphrase1.equals(passphrase1) && userPassphrase2.equals(passphrase2)){
                     if(paymentFlag == 0){ //user is paying with mobile money
-                        data += mobileMoney +":"+paymentFlag;
+                        mobileMoney = "233"+mobileMoney.substring(1);
+                        if(!Validation.isValidPhoneNumber(mobileMoney)){
+                            Snackbar.make(v, "Please enter a valid phone number",Snackbar.LENGTH_LONG).show();
+                        } else {
+                            data += mobileMoney +":"+paymentFlag;
+                        }
                     } else if(paymentFlag == 1){ //user is paying with credit card
                         if(!Validation.isCorrectPin(cardPin)){ //validate pin
                                Snackbar.make(v, "Wrong Pin, Re-enter",Snackbar.LENGTH_LONG).show();

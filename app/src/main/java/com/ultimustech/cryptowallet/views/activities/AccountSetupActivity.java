@@ -15,6 +15,7 @@ import com.ultimustech.cryptowallet.controllers.api.RestAPI;
 import com.ultimustech.cryptowallet.controllers.database.FirebaseDBController;
 import com.ultimustech.cryptowallet.controllers.helpers.AccountCodeHash;
 import com.ultimustech.cryptowallet.controllers.helpers.CryptoCowriesHelper;
+import com.ultimustech.cryptowallet.models.Loyalty;
 
 import java.security.Security;
 
@@ -82,6 +83,9 @@ public class AccountSetupActivity extends AppCompatActivity {
                         message = getResources().getString(R.string.account_creation_error);
                         Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
                     } else {
+                        Loyalty loyalty = new Loyalty(accountCode, balance, true);
+                        firebaseDBController.gaveLoyaltyToken(loyalty, user.getUid());
+
                         message = getResources().getString(R.string.setup_account_success);
 //                        restAPI.nexmoSMS(contact,message);
                         Toast.makeText(getApplication(),message, Toast.LENGTH_LONG).show();

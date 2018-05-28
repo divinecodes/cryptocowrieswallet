@@ -108,38 +108,38 @@ public class DashboardFragment extends Fragment {
         });
 
         pieChart = dashboardView.findViewById(R.id.balancesChart);
-        bitcoinChart = dashboardView.findViewById(R.id.bitcoinChart);
-        etherChart = dashboardView.findViewById(R.id.etherChart);
-        litecoinChart = dashboardView.findViewById(R.id.litecoinChart);
+//        bitcoinChart = dashboardView.findViewById(R.id.bitcoinChart);
+//        etherChart = dashboardView.findViewById(R.id.etherChart);
+//        litecoinChart = dashboardView.findViewById(R.id.litecoinChart);
 
         MPChartsHelper.pieChartHelper(pieChart, dashboardView.getResources().getColor(R.color.colorPrimaryDark));
 
-        ArrayList<Entry> entries  = new ArrayList<Entry>();
-        entries.add(new Entry(1f, 0));
-        entries.add(new Entry(2f, 4));
-        entries.add(new Entry(3f, 2));
-        entries.add(new Entry(5f, 3));
-        entries.add(new Entry(7f, 1));
-
-        //set data for bitcoin chart
-        Description bitcoinDesc  = new Description();
-        bitcoinDesc.setText("Bitcoin Price");
-        bitcoinDesc.setTextSize(15);
-        bitcoinDesc.setTextColor(dashboardView.getResources().getColor(R.color.colorPrimaryDark));
-        MPChartsHelper.lineChartHelper(bitcoinChart, "Bitcoin ", bitcoinDesc,entries);
-
-        //set up data for  ethereum
-        Description etherDesc = new Description();
-        etherDesc.setText("Ether Price");
-        etherDesc.setTextSize(15);
-        etherDesc.setTextColor(dashboardView.getResources().getColor(R.color.colorAccent));
-        MPChartsHelper.lineChartHelper(etherChart, "Ethereum", etherDesc,entries);
-
-        //set up data for litecoin
-        Description liteDesc = new Description();
-        liteDesc.setText("Litecoin Price ");
-        liteDesc.setTextColor(dashboardView.getResources().getColor(R.color.colorPrimary));
-        MPChartsHelper.lineChartHelper(litecoinChart, "LiteCoin ", liteDesc,entries);
+//        ArrayList<Entry> entries  = new ArrayList<Entry>();
+//        entries.add(new Entry(1f, 0));
+//        entries.add(new Entry(2f, 4));
+//        entries.add(new Entry(3f, 2));
+//        entries.add(new Entry(5f, 3));
+//        entries.add(new Entry(7f, 1));
+//
+//        //set data for bitcoin chart
+//        Description bitcoinDesc  = new Description();
+//        bitcoinDesc.setText("Bitcoin Price");
+//        bitcoinDesc.setTextSize(15);
+//        bitcoinDesc.setTextColor(dashboardView.getResources().getColor(R.color.colorPrimaryDark));
+//        MPChartsHelper.lineChartHelper(bitcoinChart, "Bitcoin ", bitcoinDesc,entries);
+//
+//        //set up data for  ethereum
+//        Description etherDesc = new Description();
+//        etherDesc.setText("Ether Price");
+//        etherDesc.setTextSize(15);
+//        etherDesc.setTextColor(dashboardView.getResources().getColor(R.color.colorAccent));
+//        MPChartsHelper.lineChartHelper(etherChart, "Ethereum", etherDesc,entries);
+//
+//        //set up data for litecoin
+//        Description liteDesc = new Description();
+//        liteDesc.setText("Litecoin Price ");
+//        liteDesc.setTextColor(dashboardView.getResources().getColor(R.color.colorPrimary));
+//        MPChartsHelper.lineChartHelper(litecoinChart, "LiteCoin ", liteDesc,entries);
 
 
         // Inflate the layout for this fragment

@@ -39,6 +39,11 @@ public class TransactionsAdapter extends  RecyclerView.Adapter<TransactionsAdapt
         Transaction transaction = transactions.get(position);
 
         holder.transactionType.setText(transaction.type);
+        if(transaction.type.equalsIgnoreCase("buy")){
+            holder.transactionTypeLabel.setText("FROM");
+        } else {
+            holder.transactionTypeLabel.setText("TO");
+        }
         holder.transactionAccount.setText(transaction.receiver);
         holder.transactionAmount.setText(String.format("%s CCW",transaction.amount));
         holder.transactionDate.setText(new Date(transaction.timestamp).toString());

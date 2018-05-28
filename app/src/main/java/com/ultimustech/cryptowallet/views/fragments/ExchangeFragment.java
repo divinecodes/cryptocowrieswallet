@@ -24,6 +24,7 @@ import com.ultimustech.cryptowallet.R;
 import com.ultimustech.cryptowallet.controllers.adapters.ExchangesAdapter;
 import com.ultimustech.cryptowallet.controllers.helpers.MPChartsHelper;
 import com.ultimustech.cryptowallet.controllers.helpers.Validation;
+import com.ultimustech.cryptowallet.models.Coinbase;
 import com.ultimustech.cryptowallet.views.activities.BuyCoinsActivity;
 
 import java.util.ArrayList;
@@ -64,6 +65,9 @@ public class ExchangeFragment extends Fragment {
         entries.add(new Entry(3f, 2));
         entries.add(new Entry(5f, 3));
         entries.add(new Entry(7f, 1));
+
+
+        shoreBase.setText(Coinbase.COINBASE_BALANCE + " CCW");
 
         Description ccwDesc = new Description();
         ccwDesc.setText("CCW Price");

@@ -1,20 +1,52 @@
 package com.ultimustech.cryptowallet.views.activities;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.ultimustech.cryptowallet.R;
+import com.ultimustech.cryptowallet.controllers.database.FirebaseDBController;
+import com.ultimustech.cryptowallet.controllers.helpers.Validation;
+import com.ultimustech.cryptowallet.models.Account;
+import com.ultimustech.cryptowallet.models.Coinbase;
+import com.ultimustech.cryptowallet.models.Transaction;
+
+import java.sql.Timestamp;
 
 public class ProcessTransactionActivity extends AppCompatActivity {
     private static  final String TAG = "PROCESSINGACT";
+    private double amount;
+    private String userAccount;
+    private String mobileMoneyNum;
+    private String loyaltyCode;
+    private int ccPin;
+    private String ccNum;
+    private String coinBase;
+    private long timestamp;
 
     private ImageView processingAnim;
 
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser firebaseUser;
+    private ValueEventListener accountListener;
+    private DatabaseReference accountRef;
+
+
+
+    private FirebaseDBController firebaseDBController;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,12 +55,74 @@ public class ProcessTransactionActivity extends AppCompatActivity {
 
         processingAnim = findViewById(R.id.processing);
 
+        coinBase = Coinbase.getCoinbaseAddr();
+
+        timestamp = System.currentTimeMillis();
+
+        firebaseDBController = new FirebaseDBController();
+        //initialize firebase
+        firebaseAuth  = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
+        accountRef = FirebaseDatabase.getInstance().getReference().child("accounts").child(firebaseUser.getUid());
+
         Intent intent = getIntent();
         String type = intent.getStringExtra("type");
         String data = intent.getStringExtra("data");
 
         if(type.equalsIgnoreCase("buy")){
-            Toast.makeText(this, data,Toast.LENGTH_LONG).show();
+            String [] arrData = data.split(":");
+
+            String receiver = arrData[1];
+            if(Validation.validNumber(arrData[0])){
+                amount = Double.parseDouble(arrData[0]);
+            } else {
+                Toast.makeText(getApplicationContext(), "Invalid Amount Received",Toast.LENGTH_LONG).show();
+                finish();
+            }
+
+            if(arrData.length == 4){ //check if its a credit card payment type
+                int flag = Integer.parseInt(arrData[3]);
+                if(flag == 0){ //its a mobile money transaction
+                    mobileMoneyNum = arrData[2];
+                    //TODO: perfom mobile  money transaction
+                } else if(flag == 2){ //its a loyalty transaction
+                    loyaltyCode = arrData[2];
+                    if(firebaseDBController.checkLoyalty(loyaltyCode)){
+                        firebaseDBController.updateLoyatyToken(firebaseUser.getUid());
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Wrong Loyalty Code",Toast.LENGTH_LONG).show();
+                        finish();
+                    }
+                    //TODO: check loyalty code for validity and amount it can buy to the amount specified
+                }
+            } else if(arrData.length == 5){
+                    ccNum = arrData[2];
+                    if(Validation.isCorrectPin(arrData[3])){
+                        ccPin  = Integer.parseInt(arrData[3]);
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Wrong Pin Submittd",Toast.LENGTH_LONG).show();
+                        finish();
+                    }
+            }
+
+            Transaction transaction = new Transaction("buy",coinBase,receiver,amount,timestamp);
+            firebaseDBController.uploadTransactions(transaction);
+            firebaseDBController.updateBalance(amount, receiver, firebaseUser);
+
+//            Handler  handler = new Handler();
+//            handler.postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
+//                    //do something
+//                    Toast.makeText(getApplicationContext(), "Transaction Successfully added",Toast.LENGTH_LONG).show();
+//                }
+//            }, 7000);
+//            finish();
+
+            //now add the transaction to the users account
+            //TODO: add transaction to the blockchain, to be mined using an async task
+
+
         } else {
 
             if(data != null){
@@ -54,5 +148,6 @@ public class ProcessTransactionActivity extends AppCompatActivity {
 
         //load image into the
         Glide.with(this).load(R.drawable.processing).into(processingAnim);
+
     }
 }

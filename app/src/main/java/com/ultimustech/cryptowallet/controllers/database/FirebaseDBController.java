@@ -1,6 +1,8 @@
 package com.ultimustech.cryptowallet.controllers.database;
 
+import android.support.annotation.NonNull;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -10,10 +12,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.ultimustech.cryptowallet.models.Account;
+import com.ultimustech.cryptowallet.models.Loyalty;
 import com.ultimustech.cryptowallet.models.Transaction;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static android.support.constraint.Constraints.TAG;
 
 /**
  * Created by Poacher on 2/1/2018.
@@ -25,6 +30,7 @@ public class FirebaseDBController {
     private DatabaseReference databaseReference;
     private DatabaseReference mAccountRef;
     private DatabaseReference tokensRef;
+    private DatabaseReference loyaltyRef;
     private ValueEventListener accountsListener;
     private String details;
 
@@ -79,17 +85,44 @@ public class FirebaseDBController {
         return true;
     }
 
+    public boolean gaveLoyaltyToken(Loyalty loyalty, String uid){
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        loyaltyRef = firebaseDatabase.getReference("loyalty");
+
+        loyaltyRef.child(uid).setValue(loyalty);
+        return true;
+    }
+
+    public boolean updateLoyatyToken(String uid){
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        mTransactionRef = firebaseDatabase.getReference().child("loyalty").child(uid);
+
+        Map<String, Object> loyatyUpdates = new HashMap<>();
+        loyatyUpdates.put("used",false);
+
+        mAccountRef.updateChildren(loyatyUpdates);
+        return false;
+    }
+
+    public boolean checkLoyalty(String uid){
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        loyaltyRef = firebaseDatabase.getReference("loyalty").child(uid);
+
+        if(loyaltyRef == null){
+            return false;
+        }
+
+
+        return true;
+    }
+
     public boolean uploadTransactions(Transaction transaction ){
         firebaseDatabase =FirebaseDatabase.getInstance();
-        String key = mTransactionRef.child("transactions").push().getKey();
         mTransactionRef = firebaseDatabase.getReference("transactions").child(transaction.sender);
 
-        Map<String, Object> transactionDetails = transaction.toMap();
+        String key = mTransactionRef.child("transactions").push().getKey();
 
-        Map<String, Object> transactionUpdates = new HashMap<>();
-        transactionDetails.put(key,transaction);
-        mTransactionRef.updateChildren(transactionUpdates);
-
+        mTransactionRef.child(key).setValue(transaction);
 
         //update the other users transaction tree
         String address = transaction.receiver;
@@ -99,14 +132,12 @@ public class FirebaseDBController {
 
     private boolean updateReceiverTransactionTree(String address,Transaction transaction){
         firebaseDatabase = FirebaseDatabase.getInstance();
-        String key = mTransactionRef.child("transactions").push().getKey();
         mTransactionRef = firebaseDatabase.getReference("transactions").child(address);
 
-        Map<String, Object> transactionDetails = transaction.toMap();
-        Map<String, Object> transactionUpdates = new HashMap<>();
-        transactionDetails.put(key,transaction);
+        String key = mTransactionRef.child("transactions").push().getKey();
 
-        mTransactionRef.updateChildren(transactionUpdates);
+        mTransactionRef.child(key).setValue(transaction);
+
         return true;
     }
 
@@ -152,40 +183,59 @@ public class FirebaseDBController {
         firebaseDatabase = FirebaseDatabase.getInstance();
         mAccountRef  = firebaseDatabase.getReference().child("accounts");
 
-        mAccountRef.addChildEventListener(new ChildEventListener() {
+        //attach a listener to read the data
+        ValueEventListener accountsValue = new ValueEventListener() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Account account = dataSnapshot.getValue(Account.class);
-                if(account.accountCode.equals(code)){
-                        address = account.accountHash;
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Account tempAccount = dataSnapshot.getValue(Account.class);
+                if(tempAccount != null){
+                    if(tempAccount.accountHash == code){
+                        address = tempAccount.accountHash;
+                    }
                 }
             }
 
             @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
             public void onCancelled(DatabaseError databaseError) {
-
             }
-        });
+        };
+
+        mAccountRef.addValueEventListener(accountsValue);
+
+        accountsListener = accountsValue;
 
         return address;
     }
 
+    public boolean updateBalance(final double amount, final String address,FirebaseUser user){
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        mAccountRef  = firebaseDatabase.getReference().child("accounts").child(user.getUid());
 
+        ValueEventListener accountEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //getAccount Details
+                Account account = dataSnapshot.getValue(Account.class);
+
+                if(account != null) {
+                    if(account.accountHash == address){
+
+                        double update = amount + account.balance;
+                        mAccountRef.child("balance").setValue(update);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.w(TAG,"loadingAccount Details Cancelled", databaseError.toException());
+            }
+        };
+        mAccountRef.addValueEventListener(accountEventListener);
+
+        accountsListener = accountEventListener;
+        return true;
+    }
     /**
      * getter and setter methods
      */

@@ -193,7 +193,7 @@ public class MainActivity extends AppCompatActivity
             fragmentManager.beginTransaction().replace(R.id.main_frame, new AccountFragment()).commit();
             setTitle(R.string.nav_account);
         } else if (id == R.id.nav_settings) {
-            Intent intent  = new Intent(getApplicationContext(), SettingActivity.class);
+            Intent intent  = new Intent(getApplicationContext(), SettingsActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_help) {
             Intent intent  = new Intent(getApplicationContext(), HelpActivity.class);
