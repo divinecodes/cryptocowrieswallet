@@ -1,0 +1,224 @@
+<resources>
+    <string name="app_name">CryptoWallet</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dashboardWelcome">Welcome To The Dashboard</string>
+    <string name="transactionWelcome">Welcome To Transactions Fragment</string>
+    <string name="mineWelcome">Welcome To Min Dashboard</string>
+    <string name="nav_help">Help</string>
+    <string name="nav_settings">Settings</string>
+    <string name="nav_account">Account</string>
+    <string name="nav_mine">Mine</string>
+    <string name="nav_transactions">Transactions</string>
+    <string name="nav_dashboard">Dashboard</string>
+
+    <string name="title_activity_login">Login</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="action_share">Share</string>
+    <string name="action_logout">Logout</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login_button">Login</string>
+    <string name="signup_link_text">No Account Yet? Create One</string>
+    <string name="login_label">Login</string>
+    <string name="signup_label">Sign Up</string>
+    <string name="login_link_text">Already Have an Account ?  Login</string>
+    <string name="confirmPassword">Confirm Password</string>
+    <string name="signup_button">Create Account</string>
+    <string name="signup_success">Account Created Successfully</string>
+    <string name="creating_account">Creating Account…</string>
+    <string name="signup_failure">Unable to Create New Account</string>
+    <string name="login_success">Login Successful</string>
+    <string name="login_failure">Unable To Login</string>
+    <string name="balance_label">account balance</string>
+    <string name="account_balance">0.00001208 CCW</string>
+    <string name="one_balance">1.00000000</string>
+    <string name="other_sample_rate">2.00000000</string>
+    <string name="ccw_shorthand">CCW</string>
+    <string name="sample_account_hash">7cfb127af5310dbde5100cc50db5ae304c5aa62d</string>
+    <string name="receive_transactions">receive</string>
+    <string name="send_transactions">send</string>
+    <string name="transaction_label">transactions</string>
+    <string name="transaction_type_label">transaction type:</string>
+    <string name="transaction_type">send</string>
+    <string name="transaction_account_label">to:</string>
+    <string name="transaction_amount_label">amount:</string>
+    <string name="transaction_date_label">DATE</string>
+    <string name="sample_date">12/12/2017</string>
+    <string name="exchange_rate">exchange rates</string>
+    <string name="buy_ccw">Buy CCW</string>
+    <string name="scan_account_qr">scan qr account</string>
+    <string name="start_mining">mine</string>
+    <string name="stop_mining">stop</string>
+    <string name="free_mining">get free 0.05 CCW</string>
+    <string name="withdraw">withdraw</string>
+    <string name="free_mining_warning">free mining available once every hour</string>
+    <string name="my_email">tetteydivine0@gmail.com</string>
+    <string name="change_details">Change Details</string>
+    <string name="add_new_transaction">New Transaction</string>
+    <string name="sendAccount">Account Number</string>
+    <string name="sendAmount">Amount</string>
+    <string name="send">Send</string>
+    <string name="accountCode">Account Code</string>
+    <string name="transaction_in_progress">making transaction...</string>
+    <string name="wrong_password">Passwords Do Not Match!</string>
+    <string name="account_creation_error">Unable to Create Currency, Please go to Account Tab to Manualy Setup your account</string>
+    <string name="authenticate">authenticating...</string>
+    <string name="enterPassphrase">Enter Your Two Passphrases</string>
+    <string name="setup_account">Setup Account</string>
+    <string name="passphrase_1">fish</string>
+    <string name="passphrase_2">earth</string>
+    <string name="reveal_passphrase">Reveal Passphrases</string>
+    <string name="hide_passphrase">Hide Passphrases</string>
+    <string name="passphrase_label_1">Enter First Passphrase</string>
+    <string name="passphrase_info">This two passphrases would be used to authenticate transactions on the, keep them simple and easy to remember. *DO NOT STORE YOUR PASSPHRASES ANY WHERE*, anyone with your passphrase and account id,can perform transactions related to your account</string>
+    <string name="passphrase_label_2">Enter Second Passphrase</string>
+    <string name="setting_up_account">setting up crypto account</string>
+    <string name="setup_account_success">Account Setup SuccessFul</string>
+    <string name="balances">Balances</string>
+    <string name="chartDescription">Overview Of Your Account Balances</string>
+    <string name="accountBalanceLabel">Account Balance</string>
+    <string name="currency_prices">CryptoCurrency Prices</string>
+    <string name="nav_exchanges">Exchange</string>
+    <string name="sample_coins">100CCW</string>
+    <string name="coins_for_sale">Coins For Sale:</string>
+    <string name="enterAmount">Enter Amount</string>
+    <string name="buy">BUY</string>
+    <string name="buyCoinsTitle">Buy Coins</string>
+    <string name="enterMomoNumber">Enter Mobile Money Number</string>
+    <string name="enterCreditCardPin">Enter Credit Card Pin</string>
+    <string name="enterCreditCardNumber">Enter Credit Card Number</string>
+    <string name="enterLoyaltyCode">Enter Loyalty Code</string>
+    <string name="charge">Amount To Be Paid:</string>
+    <string name="ghanacedis">100GHS</string>
+    <string name="countrycode">start with country code(eg +233504849233)</string>
+    <string name="accountCodeLabel">Account Code</string>
+    <string name="update_account">Update Account Details</string>
+    <string name="update">Update</string>
+    <string name="dummy_contact">233054841975</string>
+    <string name="processing_transaction">Processing Transaction.... Please Wait</string>
+
+    <string-array name="currencies">
+        <item>GHC</item>
+        <item>USD</item>
+        <item>BTC</item>
+        <item>ETH</item>
+        <item>XRP</item>
+    </string-array>
+    <string-array name="duration">
+        <item>Last Hour</item>
+        <item>This Week</item>
+        <item>This Month</item>
+        <item>This Year</item>
+    </string-array>
+    <string-array name="sampleHash">
+        <item>1cfb127af5310dbde5100cc50db5ae389c5aa62d</item>
+        <item>2cfb127af5310dbde5100cc50db5ae304c5sd62d</item>
+        <item>3cfb127af5310dbde5100cc50db5ae389c5aa62d</item>
+        <item>4cfb127af5310dbde5100cc50db5ae304c5sd62d</item>
+        <item>5cfb127af5310dbde5100cc50db5ae389c5aa62d</item>
+        <item>6cfb127af5310dbde5100cc50db5ae304c5sd62d</item>
+        <item>7cfb127af5310dbde5100cc50db5ae389c5aa62d</item>
+        <item>8cfb127af5310dbde5100cc50db5ae304c5sd62d</item>
+        <item>9cfb127af5310dbde5100cc50db5ae389c5aa62d</item>
+        <item>0cfb127af5310dbde5100cc50db5ae304c5sd62d</item>
+    </string-array>
+    <string-array name="paymentTypes">
+        <item>Mobile Money</item>
+        <item>Credit Card</item>
+        <item>Loyalty Code</item>
+    </string-array>
+    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
+    <!--
+        This is the name that users will see when interacting with this channel.
+        It should describe the category of notifications that will be sent through this channel
+     -->
+    <string name="default_notification_channel_name" translatable="true">News</string>
+    <string name="cryptocowries_shore">CRYPTOCOWRIES SHORE</string>
+    <string name="enterPassphrase1">Enter Passphrase 1</string>
+    <string name="enterPassphrase2">Enter  Passphrase 2</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Example General settings -->
+    <string name="pref_header_general">General</string>
+
+    <string name="pref_title_social_recommendations">Enable social recommendations</string>
+    <string name="pref_description_social_recommendations">Recommendations for people to contact
+        based on your message history
+    </string>
+
+    <string name="pref_title_display_name">Display name</string>
+    <string name="pref_default_display_name">John Smith</string>
+
+    <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
+    <string-array name="pref_example_list_titles">
+        <item>Always</item>
+        <item>When possible</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_example_list_values">
+        <item>1</item>
+        <item>0</item>
+        <item>-1</item>
+    </string-array>
+
+    <!-- Example settings for Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; sync</string>
+
+    <string name="pref_title_sync_frequency">Sync frequency</string>
+    <string-array name="pref_sync_frequency_titles">
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+        <item>3 hours</item>
+        <item>6 hours</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_sync_frequency_values">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>180</item>
+        <item>360</item>
+        <item>-1</item>
+    </string-array>
+
+    <string-array name="list_preference_entries">
+        <item>Entry 1</item>
+        <item>Entry 2</item>
+        <item>Entry 3</item>
+    </string-array>
+
+    <string-array name="list_preference_entry_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="multi_select_list_preference_default_value" />
+
+    <string name="pref_title_system_sync_settings">System sync settings</string>
+
+    <!-- Example settings for Notifications -->
+    <string name="pref_header_notifications">Notifications</string>
+
+    <string name="pref_title_new_message_notifications">New message notifications</string>
+
+    <string name="pref_title_ringtone">Ringtone</string>
+    <string name="pref_ringtone_silent">Silent</string>
+
+    <string name="pref_title_vibrate">Vibrate</string>
+    <string name="loading">loading</string>
+    <string name="receivers_address">Receivers Address</string>
+    <string name="search_for_account">Search For Account</string>
+</resources>
+
