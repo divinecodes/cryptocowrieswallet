@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity
             firebaseDBController.updateNotificationToken(refreshToken, firebaseUser.getUid());
         }
 
-
+        //initialize and call coin history api
         RestAPI restAPI = new RestAPI();
         restAPI.callAPI();
         //initialize Auth State Listener and check if user is logged in
