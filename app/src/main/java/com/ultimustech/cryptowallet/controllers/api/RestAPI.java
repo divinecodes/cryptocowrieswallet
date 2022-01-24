@@ -18,10 +18,10 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class RestAPI {
 
-    private final String HUBTEL_API_PASSWORD="altlgunw";
-    private final String HUBTEL_API_USER="ckbmlzsb";
-    private String NEXMO_API_KEY = "05c54764";
-    private String NEXMO_API_SECRET = "d8341d4f55d014e1";
+    private final String HUBTEL_API_PASSWORD="";
+    private final String HUBTEL_API_USER="";
+    private String NEXMO_API_KEY = "";
+    private String NEXMO_API_SECRET = "";
 
     public void callAPI(){
         AsyncTask.execute(new Runnable() {
